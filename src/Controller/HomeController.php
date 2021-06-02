@@ -16,6 +16,8 @@ class Home extends AbstractController {
     public function home(){
         return new Response("Aha");
     }
+
+    
 }
 
 ?>

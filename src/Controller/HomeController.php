@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 
-class Home extends AbstractController {
+class HomeController extends AbstractController {
 
     /**
      * @Route("/", name="homepage")

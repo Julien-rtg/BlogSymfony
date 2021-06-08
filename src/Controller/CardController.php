@@ -7,18 +7,15 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
-
-class HomeController extends AbstractController {
+class CardController extends AbstractController{
 
     /**
-     * @Route("/", name="homepage")
+     * @Route ("/card", name = "card")
      */
-    public function home(){
+    public function card(){
         return $this->render(
-            'users/home.html.twig'
+            'users/card.html.twig'
         );
     }
 
 }
-
-?>

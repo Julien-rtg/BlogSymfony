@@ -33,4 +33,12 @@ services:
         - method: setContainer
           arguments: ['@service_container']
     
-    
+    App\Controller\AboutController:
+        calls:
+        - method: setContainer
+          arguments: ['@service_container']
+
+    App\Controller\AccountController:
+        calls:
+        - method: setContainer
+          arguments: ['@service_container']          

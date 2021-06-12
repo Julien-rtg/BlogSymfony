@@ -1,5 +1,79 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Page Home</h1>
+
+    <div class="container containerOfPage">
+
+        <div class="container mt-5">
+            <img src="https://via.placeholder.com/250x250" alt="" style="border-radius : 50%">
+        </div>
+
+        <div class="jumbotron jumbotron-fluid mt-5">
+            <h1 class="display-4">Page Home</h1>
+            <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+            <hr class="my-5">
+        </div>
+        
+        <div class="container mainContainer">
+            <div class="container mainContainerLeft">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card bg-light mb-3">
+                            <div class="card-header text-center">
+                                <p>Name of product</p>
+                            </div>
+
+                            <img src="https://via.placeholder.com/350x350" alt="">
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-light mb-3">
+                            <div class="card-header text-center">
+                                <p>Name of product</p>
+                            </div>
+
+                            <img src="https://via.placeholder.com/350x350" alt="">
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-light mb-3">
+                            <div class="card-header text-center">
+                                <p>Name of product</p>
+                            </div>
+
+                            <img src="https://via.placeholder.com/350x350" alt="">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container mainContainerRight">
+                <div class="showCategory">
+                    <div class="column">
+                        <div class="col-md-4">
+                            <p>Category</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>Category</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>Category</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>Category</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="showCard">
+                    <p>Card</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
 {% endblock %}

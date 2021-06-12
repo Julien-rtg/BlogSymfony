@@ -4,12 +4,12 @@
         <meta charset="UTF-8">
         <title>{% block title %}LPF{% endblock %}</title>
 
-        {# <link rel="stylesheet" href="/styles/app.css">
-        <link rel="stylesheet" href="/styles/bootstrap.min.css"> #}
+        <link rel="stylesheet" href="/styles/app.css">
+        <link rel="stylesheet" href="/styles/bootstrap.min.css">
 
-        {% block stylesheets %}
+        {# {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+        {% endblock %} #}
 
     </head>
     <body>
@@ -42,10 +42,10 @@
 
         {% block body %}{% endblock %}
         
-        {% block javascripts %}
+        {# {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
-        {% endblock %}
+        {% endblock %} #}
         
-        {# <script src="/js/bootstrap.bundle.min.js"></script> #}
+        <script src="/jsDev/bootstrap.bundle.min.js"></script>
     </body>
 </html>

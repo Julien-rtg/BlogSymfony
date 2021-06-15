@@ -1,1 +1,1 @@
-# BlogSymfony
+# Restaurant site

@@ -17,36 +17,26 @@
         <div class="container mainContainer">
             <div class="container mainContainerLeft">
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="card bg-light mb-3">
-                            <div class="card-header text-center">
-                                <p>Name of product</p>
+
+                    {% for product in products %}
+                        <div class="col-md-3">
+                            <div class="card bg-light mb-3">
+                                <div class="card-header text-center">
+                                    {{product.name}}
+                                </div>
+
+                                <img src="{{product.image}}" alt="">
+                                <div class="card-body text-center">
+                                    {{product.description}} <br>
+                                    
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-success">Add to card</button>
+                                    {{product.price}} €
+                                </div>
                             </div>
-
-                            <img src="https://via.placeholder.com/350x350" alt="">
-
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card bg-light mb-3">
-                            <div class="card-header text-center">
-                                <p>Name of product</p>
-                            </div>
-
-                            <img src="https://via.placeholder.com/350x350" alt="">
-
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card bg-light mb-3">
-                            <div class="card-header text-center">
-                                <p>Name of product</p>
-                            </div>
-
-                            <img src="https://via.placeholder.com/350x350" alt="">
-
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
             <div class="container mainContainerRight">

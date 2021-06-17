@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
-
 {% block body %}
+
 
     <div class="container containerOfPage">
 
@@ -17,7 +17,6 @@
         <div class="container mainContainer">
             <div class="container mainContainerLeft">
                 <div class="row">
-
                     {% for product in products %}
                         <div class="col-md-3">
                             <div class="card bg-light mb-3">
@@ -41,18 +40,11 @@
             </div>
             <div class="container mainContainerRight">
                 <div class="showCategory column">
-                    <div class="col-md-4">
-                        <p>Category</p>
-                    </div>
-                    <div class="col-md-4">
-                        <p>Category</p>
-                    </div>
-                    <div class="col-md-4">
-                        <p>Category</p>
-                    </div>
-                    <div class="col-md-4">
-                        <p>Category</p>
-                    </div>
+                    {% for category in categories %}
+                        <div class="col-md-4">
+                            {{ category.category }}
+                        </div>
+                    {% endfor %}
                 </div>
                 <div class="showCard">
                     <p>Card</p>

@@ -35,16 +35,17 @@ class ProductRepository extends ServiceEntityRepository
         ;
     }
     */
-
-    /*
-    public function findOneBySomeField($value): ?Product
+    
+    /**
+     * @return Product[] Returns an array of Product categories
+     */
+    public function findByOneCategory(): array
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
+            ->select('DISTINCT p.category')
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->getResult();
+
     }
-    */
+    
 }

@@ -18,10 +18,12 @@ class HomeController extends AbstractController {
     public function home(ProductRepository $productRepository){
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
         $products = $productRepository->findAll();
+        $categories = $productRepository->findByOneCategory();
         return $this->render(
             'users/home.html.twig',
             [
-                'products' => $products
+                'products' => $products,
+                'categories' => $categories
             ]
         );
     }

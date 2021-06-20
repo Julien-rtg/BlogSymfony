@@ -30,7 +30,7 @@
                                     
                                 </div>
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-success">Add to card</button>
+                                    <a href="{{ path('add_cart', { 'id' : product.id}) }}" class="btn btn-success">Add to cart</a>
                                     {{product.price}} €
                                 </div>
                             </div>
@@ -46,8 +46,8 @@
                         </div>
                     {% endfor %}
                 </div>
-                <div class="showCard">
-                    <p>Card</p>
+                <div class="showCart">
+                    <p>Cart</p>
                 </div>
             </div>
         </div>

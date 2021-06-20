@@ -28,7 +28,7 @@ services:
           - method: setContainer
             arguments: ['@service_container']
 
-    App\Controller\CardController:
+    App\Controller\CartController:
         calls:
         - method: setContainer
           arguments: ['@service_container']

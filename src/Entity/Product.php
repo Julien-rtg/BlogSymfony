@@ -44,16 +44,6 @@ class Product
      */
     private $image;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Card::class, mappedBy="product")
-     */
-    private $cards;
-
-    public function __construct()
-    {
-        $this->cards = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;

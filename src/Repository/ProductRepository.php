@@ -36,16 +36,4 @@ class ProductRepository extends ServiceEntityRepository
     }
     */
     
-    /**
-     * @return Product[] Returns an array of Product categories
-     */
-    public function findByOneCategory(): array
-    {
-        return $this->createQueryBuilder('p')
-            ->select('DISTINCT p.category')
-            ->getQuery()
-            ->getResult();
-
-    }
-    
 }

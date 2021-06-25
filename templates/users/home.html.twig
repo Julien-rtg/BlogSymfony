@@ -14,11 +14,11 @@
             <hr class="my-5">
         </div>
         
-        <div class="container mainContainer">
-            <div class="container mainContainerLeft">
+        <div class="container mainContainer row">
+            <div class="container mainContainerLeft col-md-8">
                 <div class="row">
                     {% for product in products %}
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="card bg-light mb-3">
                                 <div class="card-header text-center">
                                     {{product.name}}
@@ -38,11 +38,11 @@
                     {% endfor %}
                 </div>
             </div>
-            <div class="container mainContainerRight">
+            <div class="container mainContainerRight col-md-4">
                 <div class="showCategory column">
                     {% for category in categories %}
-                        <div class="col-md-4">
-                            {{ category.category }}
+                        <div class="text-center">
+                            <p>{{ category.name }}</p>
                         </div>
                     {% endfor %}
                 </div>

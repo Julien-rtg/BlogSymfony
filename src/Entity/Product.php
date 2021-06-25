@@ -37,12 +37,17 @@ class Product
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $category;
+    private $image;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="products")
      */
-    private $image;
+    private $categories;
+
+    public function __construct()
+    {
+        $this->categories = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -85,18 +90,6 @@ class Product
         return $this;
     }
 
-    public function getCategory(): ?string
-    {
-        return $this->category;
-    }
-
-    public function setCategory(string $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
     public function getImage(): ?string
     {
         return $this->image;
@@ -110,28 +103,25 @@ class Product
     }
 
     /**
-     * @return Collection|Card[]
+     * @return Collection|Category[]
      */
-    public function getCards(): Collection
+    public function getCategories(): Collection
     {
-        return $this->cards;
+        return $this->categories;
     }
 
-    public function addCard(Card $card): self
+    public function addCategory(Category $category): self
     {
-        if (!$this->cards->contains($card)) {
-            $this->cards[] = $card;
-            $card->addProduct($this);
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
         }
 
         return $this;
     }
 
-    public function removeCard(Card $card): self
+    public function removeCategory(Category $category): self
     {
-        if ($this->cards->removeElement($card)) {
-            $card->removeProduct($this);
-        }
+        $this->categories->removeElement($category);
 
         return $this;
     }

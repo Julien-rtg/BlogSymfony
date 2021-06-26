@@ -4,18 +4,20 @@
 
     <div class="container containerOfPage">
 
-        <div class="container mt-5">
-            <img src="https://via.placeholder.com/250x250" alt="" style="border-radius : 50%">
-        </div>
+        <div class="topContainer text-center">
+            <div class="mt-5 logoTop">
+                <img src="https://via.placeholder.com/250x250" alt="" style="border-radius : 50%">
+            </div>
 
-        <div class="jumbotron jumbotron-fluid mt-5">
-            <h1 class="display-4">Page Home</h1>
-            <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
-            <hr class="my-5">
+            <div class="jumbotron jumbotron-fluid mt-5">
+                <h1 class="display-4">Page Home</h1>
+                <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+                <hr class="my-5">
+            </div>
         </div>
         
-        <div class="container mainContainer row">
-            <div class="container mainContainerLeft col-md-8">
+        <div class="mainContainer row">
+            <div class="mainContainerLeft col-md-8">
                 <div class="row">
                     {% for product in products %}
                         <div class="col-md-4">
@@ -38,11 +40,14 @@
                     {% endfor %}
                 </div>
             </div>
-            <div class="container mainContainerRight col-md-4">
-                <div class="showCategory column">
+            <div class="mainContainerRight col-md-4">
+                <div class="showCategory text-center column">
+                    <div class="col-sm mb-3">
+                        <a href="{{ path('homepage') }}">All products</a>
+                    </div>
                     {% for category in categories %}
-                        <div class="text-center">
-                            <p>{{ category.name }}</p>
+                        <div class="col-sm mb-3">
+                            <a href="{{ path('show_category', { 'slug' : category.name } ) }}">{{ category.name }}</a>
                         </div>
                     {% endfor %}
                 </div>

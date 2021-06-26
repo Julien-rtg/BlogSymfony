@@ -30,7 +30,7 @@ class CategoryController extends AbstractController
 
         $data = $categoryService->removeCategory($id);
 
-        return new Response('Remove new CATEGORY with id '. $data[0]['id'] . ' and name ' . $data[0]['name']);
+        return new Response('Remove CATEGORY with id '. $data[0]['id'] . ' and name ' . $data[0]['name']);
     }
 
 

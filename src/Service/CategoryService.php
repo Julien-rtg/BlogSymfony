@@ -18,7 +18,7 @@ class CategoryService {
     public function addCategory(){
 
         $category = new Category();
-        $category->setName('Test');
+        $category->setName('Hot-Meals');
         
         $this->entityManager->persist($category);
         $this->entityManager->flush();

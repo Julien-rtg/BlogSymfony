@@ -27,7 +27,27 @@ class HomeController extends AbstractController {
             ]
         );
     }
-           
+    
+
+    /**
+     * @Route("/category/{slug}", name="show_category")
+     */
+    public function showCategory(string $slug, ProductRepository $productRepository, CategoryRepository $categoryRepository) : Response{
+        $productRepository = $this->getDoctrine()->getRepository(Product::class);
+        $data = $categoryRepository->findOneBySomeField($slug);
+        $products = $productRepository->findByCategory($data);
+        $categories = $categoryRepository->findAll();
+
+        return $this->render('users/home.html.twig',
+            [
+                'products' => $products,
+                'categories' => $categories
+            ]
+        );
+
+
+    }
+
 }
 
 ?>

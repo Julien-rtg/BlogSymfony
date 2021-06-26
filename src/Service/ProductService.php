@@ -67,7 +67,7 @@ class ProductService {
         $product = $this->entityManager->getRepository(Product::class)->find($id);
 
         $category = $this->entityManager->getRepository(Category::class)
-            ->findOneBy(['name' => 'Hot Meals']); // MAKING RELATION OF CATEGORY HERE
+            ->findOneBy(['name' => 'Hot-Meals']); // MAKING RELATION OF CATEGORY HERE
         $product->addCategory($category);
 
         $this->entityManager->persist($product);

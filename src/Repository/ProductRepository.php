@@ -35,5 +35,27 @@ class ProductRepository extends ServiceEntityRepository
         ;
     }
     */
-    
+
+    public function findByCategory($data){
+
+        return $this->createQueryBuilder('p')
+            ->innerJoin('p.categories', 'c')
+            ->where('c.id = :category_id')
+            ->setParameter('category_id', $data->getId())
+            ->getQuery()
+            ->getResult();
+
+    }
+
+        // récupérer les produits correspondant a l'id de la categorie
+
+        // TABLE CATEGORIE
+        // slug -> categorie ID
+
+        // TABLE PRODUCT_CATEGORIE
+        // categorie ID -> récupere ID du produit
+
+        // TABLE PRODUCT
+        // id du produit -> tout le produit
+
 }

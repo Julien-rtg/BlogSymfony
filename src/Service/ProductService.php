@@ -63,8 +63,45 @@ class ProductService {
     }
 
     public function newRelation(int $id){
-        
+
+        $product = $this->entityManager->getRepository(Product::class)->find($id);
+
+        $category = $this->entityManager->getRepository(Category::class)
+            ->findOneBy(['name' => 'Hot Meals']); // MAKING RELATION OF CATEGORY HERE
+        $product->addCategory($category);
+
+        $this->entityManager->persist($product);
+        $this->entityManager->flush();
+
+        $data[] = [
+            'idProduct' => $product->getId(),
+            'nameProduct' => $product->getName(),
+            'idCategory' => $category->getId(),
+            'nameCategory' => $category->getName()
+        ];
+
+        return $data;
     }
 
+
+    public function removeRelation(int $id){
+        $product = $this->entityManager->getRepository(Product::class)->find($id);
+
+        $category = $this->entityManager->getRepository(Category::class)
+            ->findOneBy(['name' => 'Hot Meals']); // REMOVE RELATION OF CATEGORY HERE
+        $product->removeCategory($category);
+
+        $data[] = [
+            'idProduct' => $product->getId(),
+            'nameProduct' => $product->getName(),
+            'idCategory' => $category->getId(),
+            'nameCategory' => $category->getName()
+        ];
+
+        $this->entityManager->persist($product);
+        $this->entityManager->flush();
+
+        return $data;
+    }
 
 }

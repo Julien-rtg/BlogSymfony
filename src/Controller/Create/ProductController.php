@@ -36,35 +36,21 @@ class ProductController extends AbstractController
     /**
      * @Route("/new-relation-product/{id}", name="new_relation_product_category")
      */
-    public function newRelationToCategory(int $id, EntityManagerInterface $entityManager) : Response{
+    public function newRelationToCategory(int $id, ProductService $productService) : Response{
 
-        $product = $entityManager->getRepository(Product::class)->find($id);
+        $data = $productService->newRelation($id);
 
-        $category = $entityManager->getRepository(Category::class)
-            ->findOneBy(['name' => 'Hot Meals']); // MAKING RELATION OF CATEGORY HERE
-        $product->addCategory($category);
-
-        $entityManager->persist($product);
-        $entityManager->flush();
-
-        return new Response('Add relation ' . $product->getName() . ' to ' . $category->getName());
+        return new Response('Add relation with id ' . $data[0]['idProduct'] . ' and with name '. $data[0]['nameProduct'] . ' to id ' . $data[0]['idCategory'] . ' and with name ' . $data[0]['nameCategory']);
     }
 
     /**
      * @Route("/remove-relation-product/{id}", name="remove_relation_product_category")
      */
-    public function removeRelationToCategory(int $id, EntityManagerInterface $entityManager) : Response{
+    public function removeRelationToCategory(int $id, ProductService $productService) : Response{
 
-        $product = $entityManager->getRepository(Product::class)->find($id);
+        $data = $productService->removeRelation($id);
 
-        $category = $entityManager->getRepository(Category::class)
-            ->findOneBy(['name' => 'Hot Meals']); // REMOVE RELATION OF CATEGORY HERE
-        $product->removeCategory($category);
-
-        $entityManager->persist($product);
-        $entityManager->flush();
-
-        return new Response('Remove relation ' . $product->getName() . ' to ' . $category->getName());
+        return new Response('Remove relation with id ' . $data[0]['idProduct'] . ' and with name '. $data[0]['nameProduct'] . ' to id ' . $data[0]['idCategory'] . ' and with name ' . $data[0]['nameCategory']);
     }
 
 }

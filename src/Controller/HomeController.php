@@ -27,14 +27,7 @@ class HomeController extends AbstractController {
             ]
         );
     }
-
-    public function category(ProductRepository $productRepository, CategoryRepository $categoryRepository) : Response{
-
-
-
-        return $this->render('');
-    }
-       
+           
 }
 
 ?>

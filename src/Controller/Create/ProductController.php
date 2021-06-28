@@ -2,10 +2,13 @@
 
 namespace App\Controller\Create;
 
-use App\Entity\Category;
 use App\Entity\Product;
+use App\Entity\Category;
+use App\Form\ProductType;
+use App\Repository\ProductRepository;
 use App\Service\ProductService;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,23 +17,48 @@ class ProductController extends AbstractController
 {
     
     /**
+     * @Route("/product", name="index_product")
+     */
+    public function index(){
+        return $this->render('product/index.html.twig');
+    }
+
+    /**
      * @Route("/add-product", name="create_product")
      */
-    public function createProduct(ProductService $productService): Response
-    {
-        $data = $productService->createProduct();
+    public function createProduct(Request $request): Response {
+        // $data = $productService->createProduct();
+        // return new Response('Saved new product ' . $data[0]['id'] . ' and with name ' . $data[0]['name']);
 
-        return new Response('Saved new product ' . $data[0]['id'] . ' and with name ' . $data[0]['name']);
+        $product = new Product();
+
+        $form = $this->createForm(ProductType::class, $product);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $product = $form->getData();
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($product);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('index_product');
+        }
+
+        return $this->render('product/new.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
      * @Route("/remove-product/{id}", name="remove_product")
      */
     public function removeProduct(int $id, ProductService $productService): Response {
+        // $data = $productService->removeProduct($id);
+        // return new Response('Delete product with name ' . $data[0]['name']);
 
-        $data = $productService->removeProduct($id);
-
-        return new Response('Delete product with name ' . $data[0]['name']);
+        return $this->render('product/delete.html.twig');
     }
 
     /**

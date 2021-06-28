@@ -12,8 +12,6 @@ class AccountController extends AbstractController{
      * @Route ("/account", name = "account")
      */
     public function account(){
-        return $this->render(
-            'users/account.html.twig'
-        );
+
     }
 }

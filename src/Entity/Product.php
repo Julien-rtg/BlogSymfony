@@ -44,6 +44,10 @@ class Product
      */
     private $categories;
 
+    public function __construct()
+    {
+        return $this->categories = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -98,7 +102,10 @@ class Product
         return $this;
     }
 
-    public function getCategories()
+    /**
+     * @return Collection|Categories[]
+     */
+    public function getCategories(): Collection
     {
         return $this->categories;
     }

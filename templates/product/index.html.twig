@@ -3,7 +3,23 @@
 
 {% block body %}
 
+    <div class="container">
 
-<a class="btn btn-success" href="{{ path('create_product') }}">Add product</a>
+        <div class="addProduct">
+            <a class="btn btn-success" href="{{ path('create_product') }}">Add product</a>
+        </div>
+
+        <div class="editProduct">
+
+            <label for="products-select">Modifier produits</label>
+            <select name="products" id="products-select" class="btn btn-primary" onchange="location = this.value;">
+                {% for product in products %}
+                    <option value="{{ path('edit_product', {'id' : product.id}) }}">{{ product.name }}</option>
+                {% endfor %}
+            </select>
+        
+        </div>
+    
+    </div>
 
 {% endblock %}

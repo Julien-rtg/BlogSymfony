@@ -30,7 +30,6 @@ class ProductType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
             ])
-            ->add('save', SubmitType::class)
         ;
     }
 

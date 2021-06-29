@@ -19,17 +19,19 @@ class ProductController extends AbstractController
     /**
      * @Route("/product", name="index_product")
      */
-    public function index(){
-        return $this->render('product/index.html.twig');
+    public function index(ProductRepository $productRepository){
+        $productRepository = $this->getDoctrine()->getRepository(Product::class);
+        $products = $productRepository->findAll();
+
+        return $this->render('product/index.html.twig', [
+            'products' => $products
+        ]);
     }
 
     /**
      * @Route("/add-product", name="create_product")
      */
     public function createProduct(Request $request): Response {
-        // $data = $productService->createProduct();
-        // return new Response('Saved new product ' . $data[0]['id'] . ' and with name ' . $data[0]['name']);
-
         $product = new Product();
 
         $form = $this->createForm(ProductType::class, $product);
@@ -50,6 +52,32 @@ class ProductController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+
+    /**
+     * @Route("/edit-product/{id}", name="edit_product")
+     */
+    public function editProduct(Product $product, Request $request) : Response {
+        $form = $this->createForm(ProductType::class, $product);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $product = $form->getData();
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($product);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('index_product');
+        }
+
+        return $this->render('product/edit.html.twig', [
+            'form' => $form->createView(),
+            'product' => $product
+        ]);
+    }
+
 
     /**
      * @Route("/remove-product/{id}", name="remove_product")

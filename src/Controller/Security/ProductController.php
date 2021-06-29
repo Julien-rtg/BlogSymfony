@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Controller\Create;
+namespace App\Controller\Security;
 
 use App\Entity\Product;
 use App\Entity\Category;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
-use App\Service\ProductService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,7 +22,7 @@ class ProductController extends AbstractController
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
         $products = $productRepository->findAll();
 
-        return $this->render('product/index.html.twig', [
+        return $this->render('Security/product/index.html.twig', [
             'products' => $products
         ]);
     }
@@ -48,7 +47,7 @@ class ProductController extends AbstractController
             return $this->redirectToRoute('index_product');
         }
 
-        return $this->render('product/new.html.twig', [
+        return $this->render('Security/product/new.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -72,41 +71,34 @@ class ProductController extends AbstractController
             return $this->redirectToRoute('index_product');
         }
 
-        return $this->render('product/edit.html.twig', [
+        return $this->render('Security/product/edit.html.twig', [
             'form' => $form->createView(),
             'product' => $product
         ]);
     }
 
-
     /**
      * @Route("/remove-product/{id}", name="remove_product")
      */
-    public function removeProduct(int $id, ProductService $productService): Response {
-        // $data = $productService->removeProduct($id);
-        // return new Response('Delete product with name ' . $data[0]['name']);
+    public function removeProduct(Product $product, Request $request): Response {
+        $form = $this->createForm(ProductType::class, $product);
 
-        return $this->render('product/delete.html.twig');
-    }
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
 
-    /**
-     * @Route("/new-relation-product/{id}", name="new_relation_product_category")
-     */
-    public function newRelationToCategory(int $id, ProductService $productService) : Response{
+            $product = $form->getData();
 
-        $data = $productService->newRelation($id);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($product);
+            $entityManager->flush();
 
-        return new Response('Add relation with id ' . $data[0]['idProduct'] . ' and with name '. $data[0]['nameProduct'] . ' to id ' . $data[0]['idCategory'] . ' and with name ' . $data[0]['nameCategory']);
-    }
+            return $this->redirectToRoute('index_product');
+        }
 
-    /**
-     * @Route("/remove-relation-product/{id}", name="remove_relation_product_category")
-     */
-    public function removeRelationToCategory(int $id, ProductService $productService) : Response{
-
-        $data = $productService->removeRelation($id);
-
-        return new Response('Remove relation with id ' . $data[0]['idProduct'] . ' and with name '. $data[0]['nameProduct'] . ' to id ' . $data[0]['idCategory'] . ' and with name ' . $data[0]['nameCategory']);
+        return $this->render('Security/product/remove.html.twig', [
+            'form' => $form->createView(),
+            'product' => $product
+        ]);
     }
 
 }

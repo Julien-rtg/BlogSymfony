@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Create;
+namespace App\Controller\Security;
 
 use App\Entity\Category;
 use App\Service\CategoryService;

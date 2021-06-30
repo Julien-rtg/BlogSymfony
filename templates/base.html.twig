@@ -38,6 +38,16 @@
                     </div>
                 </div>
             </nav>
+
+            {% for label, messages in app.flashes %}
+                <div class="container">
+                    <div class="alert alert-{{label}}">
+                        {% for message in messages %}
+                            <p class="text-center">{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
         {% endblock %}
 
         {% block body %}{% endblock %}

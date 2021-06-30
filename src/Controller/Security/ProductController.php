@@ -36,12 +36,16 @@ class ProductController extends AbstractController {
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
             $product = $form->getData();
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($product);
             $entityManager->flush();
+
+            $this->addFlash(
+                'success',
+                "Le produit {$product->getName()} a bien été ajouté !",
+            );
 
             return $this->redirectToRoute('index_product');
         }
@@ -60,12 +64,16 @@ class ProductController extends AbstractController {
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
             $product = $form->getData();
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($product);
             $entityManager->flush();
+
+            $this->addFlash(
+                'success',
+                "Le produit {$product->getName()} a bien été modifié !",
+            );
 
             return $this->redirectToRoute('index_product');
         }
@@ -84,12 +92,16 @@ class ProductController extends AbstractController {
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
             $product = $form->getData();
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($product);
             $entityManager->flush();
+
+            $this->addFlash(
+                'danger',
+                "Le produit {$product->getName()} a bien été supprimé !",
+            );
 
             return $this->redirectToRoute('index_product');
         }

@@ -12,8 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class ProductController extends AbstractController
-{
+class ProductController extends AbstractController {
     
     /**
      * @Route("/product", name="index_product")

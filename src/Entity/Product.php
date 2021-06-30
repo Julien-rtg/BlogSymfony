@@ -114,6 +114,7 @@ class Product
     {
         if (!$this->categories->contains($category)) {
             $this->categories[] = $category;
+            $category->addProduct($this);
         }
 
         return $this;

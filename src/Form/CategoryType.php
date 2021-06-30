@@ -9,32 +9,27 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\MoneyType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-
-class ProductType extends AbstractType
+class CategoryType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('name', TextType::class)
-            ->add('price', MoneyType::class)
-            ->add('description', TextareaType::class)
-            ->add('image', TextType::class)
-            ->add('categories', EntityType::class, [
-                'class' => Category::class,
-                'choice_label' => 'name',
-                'multiple' => true,
-                'expanded' => true,
-            ])
+            // ->add('products', EntityType::class, [
+            //     'class' => Product::class,
+            //     'choice_label' => 'name',
+            //     'label' => 'Liers aux produits : ',
+            //     'multiple' => true,
+            //     'expanded' => true,
+            // ])
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Product::class,
+            'data_class' => Category::class,
         ]);
     }
 }

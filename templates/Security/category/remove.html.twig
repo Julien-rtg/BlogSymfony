@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <h1> Supprimer la catégorie : {{ category.name }}</h1>
+
+        {{ form_start(form) }}
+            <div class="my-custom-class-for-errors">
+                {{ form_errors(form) }}
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    {{ form_widget(form) }}
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-danger">Delete Category</button>
+
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}

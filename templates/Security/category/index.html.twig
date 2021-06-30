@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    <div class="container">
+
+        <div class="addProduct">
+            <a class="btn btn-success" href="{{ path('create_category') }}">Add category</a>
+        </div>
+
+        <div class="editProduct">
+
+            <label for="categories-select">Modifier la catégorie : </label>
+            <select name="categories" id="categories-select" class="btn btn-primary" onchange="location = this.value;">
+                <option value="">Select Category to Modify</option>
+                {% for category in categories %}
+                    <option value="{{ path('edit_category', {'id' : category.id}) }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+        
+        </div>
+    
+        <div class="removeProduct">
+            <label for="categories-select">Supprimer la catégorie : </label>
+            <select name="categories" id="categories-select" class="btn btn-danger" onchange="location = this.value;">
+                <option value="">Select Category to Delete</option>
+                {% for category in categories %}
+                    <option value="{{ path('remove_category', {'id' : category.id}) }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+    </div>
+
+{% endblock %}

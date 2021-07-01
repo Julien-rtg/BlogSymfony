@@ -3,6 +3,7 @@ security:
         App\Entity\User:
             algorithm: auto
 
+
     # https://symfony.com/doc/current/security/experimental_authenticators.html
     enable_authenticator_manager: true
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
@@ -11,27 +12,20 @@ security:
         app_user_provider:
             entity:
                 class: App\Entity\User
-                property: username
+                property: email
+        # used to reload user from session & other features (e.g. switch_user)
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        # admin:
-        #     pattern: ^/admin
-            
-        #     provider: in_database
 
-        #     form_login:
-        #       login_path: admin_account_login
-        #       check_path: admin_account_login
-
-        #     logout:
-        #       path: admin_account_logout
-        #       target: homepage
         main:
             lazy: true
             provider: app_user_provider
-        
+            custom_authenticator: App\Security\UserAuthenticator
+            logout:
+                path: app_logout
+                target: homepage
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
 

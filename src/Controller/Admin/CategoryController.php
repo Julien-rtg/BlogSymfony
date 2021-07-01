@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Security;
+namespace App\Controller\Admin;
 
 use App\Entity\Category;
 use App\Form\CategoryType;
@@ -14,19 +14,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CategoryController extends AbstractController {
     
     /**
-     * @Route("/category", name="index_category")
+     * @Route("/admin/category", name="index_category")
      */
     public function index(CategoryRepository $categoryRepository) : Response {
         $categoryRepository = $this->getDoctrine()->getRepository(Category::class);
         $category = $categoryRepository->findAll();
 
-        return $this->render('Security/category/index.html.twig', [
+        return $this->render('admin/category/index.html.twig', [
             'categories' => $category,
         ]);
     }
 
     /**
-     * @Route("/add-category", name="create_category")
+     * @Route("/admin/add-category", name="create_category")
      */
     public function createCategory(Request $request): Response {
         $category = new Category();
@@ -44,20 +44,20 @@ class CategoryController extends AbstractController {
 
             $this->addFlash(
                 'success',
-                "La catégorie {$category->getName()} a bien été ajoutée !",
+                "La catégorie <strong>{$category->getName()}</strong> a bien été ajoutée !",
             );
 
             return $this->redirectToRoute('index_category');
         }
 
-        return $this->render('Security/category/new.html.twig', [
+        return $this->render('admin/category/new.html.twig', [
             'form' => $form->createView(),
         ]);
     }
 
 
     /**
-     * @Route("/edit-category/{id}", name="edit_category")
+     * @Route("/admin/edit-category/{id}", name="edit_category")
     */
     public function editCategory(Category $category, Request $request): Response {
         $form = $this->createForm(CategoryType::class, $category);
@@ -73,20 +73,20 @@ class CategoryController extends AbstractController {
 
             $this->addFlash(
                 'success',
-                "La catégorie {$category->getName()} a bien été modifiée !",
+                "La catégorie <strong>{$category->getName()}</strong> a bien été modifiée !",
             );
 
             return $this->redirectToRoute('index_category');
         }
 
-        return $this->render('Security/category/edit.html.twig', [
+        return $this->render('admin/category/edit.html.twig', [
             'form' => $form->createView(),
             'category' => $category 
         ]);
     }
 
     /**
-     * @Route("/remove-category/{id}", name="remove_category")
+     * @Route("/admin/remove-category/{id}", name="remove_category")
      */
     public function removeCategory(Category $category, Request $request): Response {
 
@@ -103,13 +103,13 @@ class CategoryController extends AbstractController {
 
             $this->addFlash(
                 'danger',
-                "La catégorie {$category->getName()} a bien été supprimée !",
+                "La catégorie <strong>{$category->getName()}</strong> a bien été supprimée !",
             );
 
             return $this->redirectToRoute('index_category');
         }
 
-        return $this->render('Security/category/remove.html.twig', [
+        return $this->render('admin/category/remove.html.twig', [
             'form' => $form->createView(),
             'category' => $category
         ]);

@@ -32,7 +32,10 @@
                                 <a class="nav-link text-white" href="{{ path('about') }}">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="{{ path('home_admin') }}">Admin</a>
+                                <a class="nav-link text-white" href="{{ path('app_register') }}">Create Account</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{{ path('admin_account_login') }}">Admin</a>
                             </li>
                         </ul>
                     </div>
@@ -43,7 +46,7 @@
                 <div class="container">
                     <div class="alert alert-{{label}}">
                         {% for message in messages %}
-                            <p class="text-center">{{ message }}</p>
+                            <p class="text-center">{{ message | raw }}</p>
                         {% endfor %}
                     </div>
                 </div>

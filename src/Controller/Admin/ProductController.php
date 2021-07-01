@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Security;
+namespace App\Controller\Admin;
 
 use App\Entity\Product;
 use App\Entity\Category;
@@ -15,19 +15,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ProductController extends AbstractController {
     
     /**
-     * @Route("/product", name="index_product")
+     * @Route("/admin/product", name="index_product")
      */
     public function index(ProductRepository $productRepository){
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
         $products = $productRepository->findAll();
 
-        return $this->render('Security/product/index.html.twig', [
+        return $this->render('admin/product/index.html.twig', [
             'products' => $products
         ]);
     }
 
     /**
-     * @Route("/add-product", name="create_product")
+     * @Route("/admin/add-product", name="create_product")
      */
     public function createProduct(Request $request): Response {
         $product = new Product();
@@ -44,20 +44,20 @@ class ProductController extends AbstractController {
 
             $this->addFlash(
                 'success',
-                "Le produit {$product->getName()} a bien été ajouté !",
+                "Le produit <strong>{$product->getName()}</strong> a bien été ajouté !",
             );
 
             return $this->redirectToRoute('index_product');
         }
 
-        return $this->render('Security/product/new.html.twig', [
+        return $this->render('admin/product/new.html.twig', [
             'form' => $form->createView(),
         ]);
     }
 
 
     /**
-     * @Route("/edit-product/{id}", name="edit_product")
+     * @Route("/admin/edit-product/{id}", name="edit_product")
      */
     public function editProduct(Product $product, Request $request) : Response {
         $form = $this->createForm(ProductType::class, $product);
@@ -72,20 +72,20 @@ class ProductController extends AbstractController {
 
             $this->addFlash(
                 'success',
-                "Le produit {$product->getName()} a bien été modifié !",
+                "Le produit <strong>{$product->getName()}</strong> a bien été modifié !",
             );
 
             return $this->redirectToRoute('index_product');
         }
 
-        return $this->render('Security/product/edit.html.twig', [
+        return $this->render('admin/product/edit.html.twig', [
             'form' => $form->createView(),
             'product' => $product
         ]);
     }
 
     /**
-     * @Route("/remove-product/{id}", name="remove_product")
+     * @Route("/admin/remove-product/{id}", name="remove_product")
      */
     public function removeProduct(Product $product, Request $request): Response {
         $form = $this->createForm(ProductType::class, $product);
@@ -100,13 +100,13 @@ class ProductController extends AbstractController {
 
             $this->addFlash(
                 'danger',
-                "Le produit {$product->getName()} a bien été supprimé !",
+                "Le produit <strong>{$product->getName()}</strong> a bien été supprimé !",
             );
 
             return $this->redirectToRoute('index_product');
         }
 
-        return $this->render('Security/product/remove.html.twig', [
+        return $this->render('admin/product/remove.html.twig', [
             'form' => $form->createView(),
             'product' => $product
         ]);

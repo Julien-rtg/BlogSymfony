@@ -37,9 +37,20 @@
                             <li class="nav-item">
                                 <a class="nav-link text-white" href="{{ path('app_login') }}">Sign in</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="{{ path('admin_account_login') }}">Admin</a>
-                            </li>
+                            {% if app.user.roles is defined %}
+                                {% for role in app.user.roles %}
+                                    {% if role == "ROLE_ADMIN" %}
+                                        <li class="nav-item">
+                                            <a class="nav-link text-white" href="{{ path('home_admin') }}">Admin</a>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                            {% if app.user %}
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="{{ path('app_logout') }}">Logout</a>
+                                </li>
+                            {% endif %}                            
                         </ul>
                     </div>
                 </div>

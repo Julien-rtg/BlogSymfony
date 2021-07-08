@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Product;
 use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
+use App\Service\CartService;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,7 +16,7 @@ class HomeController extends AbstractController {
     /**
      * @Route("/", name="homepage")
     */
-    public function home(ProductRepository $productRepository, CategoryRepository $categoryRepository) : Response{
+    public function home(ProductRepository $productRepository, CategoryRepository $categoryRepository, CartService $cartService) : Response{
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
         $products = $productRepository->findAll();
         $categories = $categoryRepository->findAll();
@@ -23,7 +24,9 @@ class HomeController extends AbstractController {
             'users/home.html.twig',
             [
                 'products' => $products,
-                'categories' => $categories
+                'categories' => $categories,
+                'total' => $cartService->getTotal(),
+                'items' => $cartService->getFullCart()
             ]
         );
     }

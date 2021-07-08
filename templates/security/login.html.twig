@@ -1,7 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
-
 {% block body %}
 
     <div class="container">
@@ -17,9 +15,7 @@
             <label for="inputPassword">Password</label>
             <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
-            <input type="hidden" name="_csrf_token"
-                value="{{ csrf_token('authenticate') }}"
-            >
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
             {#
                 Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
@@ -36,6 +32,8 @@
             {% if not app.user %}
                 <a href="{{path('app_forgot_password_request')}}" class="btn btn-lg btn-danger">Forgot Password</a>
             {% endif %}
+            <h2 class="h3 mb-3 font-weight-normal">Create an account here :</h2>
+            <a href="{{path('app_register')}}" class="btn btn-lg btn-primary">Create an account</a>
         </form>
 
     </div>

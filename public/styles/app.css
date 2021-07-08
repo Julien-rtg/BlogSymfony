@@ -6,7 +6,15 @@ nav {
     background-color: #45637d;
 }
 /* !NAVBAR */
+/* HOME */
+.mainContainerRight {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
 
+
+/* !HOME */
 /* GMAP FOOTER */
 footer {
     background-color: #45637d;

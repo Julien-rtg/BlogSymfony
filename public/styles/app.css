@@ -7,13 +7,17 @@ nav {
 }
 /* !NAVBAR */
 /* HOME */
-.mainContainerRight {
+
+
+.itemCard{
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    flex-direction: row;
+    justify-content: center;
 }
-
-
+    .itemCard img{
+        width: 22px;
+        height: 22px;
+    }
 /* !HOME */
 /* GMAP FOOTER */
 footer {

@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+
 use App\Service\CartService;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,10 +29,10 @@ class CartController extends AbstractController{
     /**
      * @Route ("/cart/add/{id}", name = "add_cart")
      */
-    public function add($id, CartService $cartservice){
+    public function add($id, CartService $cartservice, Request $request){
         $cartservice->add($id);
 
-        return $this->redirectToRoute('cart');
+        return $this->redirectToRoute('homepage');
     }
 
 
@@ -40,7 +42,7 @@ class CartController extends AbstractController{
     public function remove($id, CartService $cartservice){
         $cartservice->remove($id);
 
-        return $this->redirectToRoute('cart');
+        return $this->redirectToRoute('homepage');
     }
 
     
@@ -50,7 +52,7 @@ class CartController extends AbstractController{
     public function delete($id, CartService $cartservice){
         $cartservice->delete($id);
 
-        return $this->redirectToRoute('cart');
+        return $this->redirectToRoute('homepage');
     }
 
 }

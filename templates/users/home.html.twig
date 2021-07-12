@@ -51,13 +51,16 @@
                         </div>
                     {% endfor %}
                 </div>
-                <div class="showCart text-center">
+                <div class="showCard text-center">
                 
                     {% for item in items %}
-                        <div class="col-sm mb-3">
+                        <div class="itemCard col-sm mb-3">
                             <p>{{ item.product.name }}</p>
-                            <p> x {{ item.quantity }}</p>
-                            <p>{{ item.product.price }} $</p>
+                            <a href="{{ path('remove_cart', {'id': item.product.id}) }}"><img src="img\minus.png" class="m-1"></a>
+                            <p> x {{ item.quantity }} </p>
+                            <a href="{{ path('add_cart', {'id': item.product.id}) }}"><img src="img\plus.png" class="m-1"></a>
+                            <p>{{ item.product.price * item.quantity}} $</p>
+                            <a href="{{ path('delete_cart', {'id': item.product.id}) }}"><img src="img\delete.png" alt="" class="m-1"></a>
                         </div>
                     {% endfor %}
                     <div class="col-sm mb-3">

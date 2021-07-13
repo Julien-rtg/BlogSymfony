@@ -7,17 +7,21 @@ nav {
 }
 /* !NAVBAR */
 /* HOME */
-
-
-.itemCard{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+.mainContainer{
+    box-shadow:  0px 0px 14px 1px #cdccd6;
 }
-    .itemCard img{
-        width: 22px;
-        height: 22px;
+    .mainContainerLeft{
+        padding: 2%;
     }
+    .mainContainerRight {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+
+        box-shadow:  0px 0px 14px 1px #cdccd6;
+        padding: 2%;
+    }
+
 /* !HOME */
 /* GMAP FOOTER */
 footer {
@@ -38,3 +42,16 @@ footer {
     width:500px;
 }
 /* !GMAP FOOTER */
+
+@media screen and (max-width: 600px) {
+    .mainContainer{
+        width: 200px;
+        height: 200px;
+        background-color: red;
+    }
+    .topContainer {
+        width: 200px;
+        height: 200px;
+        background-color: red;
+    }
+}

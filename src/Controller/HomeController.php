@@ -20,6 +20,7 @@ class HomeController extends AbstractController {
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
         $products = $productRepository->findAll();
         $categories = $categoryRepository->findAll();
+
         return $this->render(
             'users/home.html.twig',
             [
@@ -35,7 +36,7 @@ class HomeController extends AbstractController {
     /**
      * @Route("/category/{slug}", name="show_category")
      */
-    public function showCategory(string $slug, ProductRepository $productRepository, CategoryRepository $categoryRepository) : Response{
+    public function showCategory(string $slug, ProductRepository $productRepository, CategoryRepository $categoryRepository, CartService $cartService) : Response{
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
         $data = $categoryRepository->findOneBySomeField($slug);
         $products = $productRepository->findByCategory($data);
@@ -44,7 +45,9 @@ class HomeController extends AbstractController {
         return $this->render('users/home.html.twig',
             [
                 'products' => $products,
-                'categories' => $categories
+                'categories' => $categories,
+                'total' => $cartService->getTotal(),
+                'items' => $cartService->getFullCart()
             ]
         );
 

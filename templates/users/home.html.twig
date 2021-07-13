@@ -16,13 +16,13 @@
             </div>
         </div>
         
-        <div class="mainContainer row">
+        <div class="mainContainer row mb-5">
             <div class="mainContainerLeft col-md-8">
                 <div class="row">
                     {% for product in products %}
                         <div class="col-md-4">
                             <div class="card bg-light mb-3">
-                                <div class="card-header text-center">
+                                <div class="card-header text-center boldProductName">
                                     {{product.name}}
                                 </div>
 
@@ -42,30 +42,35 @@
             </div>
             <div class="mainContainerRight col-md-4">
                 <div class="showCategory text-center column">
+                    <h3 class="mb-5">Categories</h3>
                     <div class="col-sm mb-3">
-                        <a href="{{ path('homepage') }}">All products</a>
+                        <a href="{{ path('homepage') }}" class="categoryProducts boldProductName">All products</a>
                     </div>
                     {% for category in categories %}
                         <div class="col-sm mb-3">
-                            <a href="{{ path('show_category', { 'slug' : category.name } ) }}">{{ category.name }}</a>
+                            <a href="{{ path('show_category', { 'slug' : category.name } ) }}" class="categoryProducts boldProductName">{{ category.name }}</a>
                         </div>
                     {% endfor %}
                 </div>
                 <div class="showCard text-center">
-                
+                    <h3 class="mb-5">Your card</h3>
                     {% for item in items %}
                         <div class="itemCard col-sm mb-3">
-                            <p>{{ item.product.name }}</p>
-                            <a href="{{ path('remove_cart', {'id': item.product.id}) }}"><img src="img\minus.png" class="m-1"></a>
-                            <p> x {{ item.quantity }} </p>
-                            <a href="{{ path('add_cart', {'id': item.product.id}) }}"><img src="img\plus.png" class="m-1"></a>
-                            <p>{{ item.product.price * item.quantity}} $</p>
-                            <a href="{{ path('delete_cart', {'id': item.product.id}) }}"><img src="img\delete.png" alt="" class="m-1"></a>
+                            <p class="boldProductName">{{ item.product.name }}</p>
+                            <p> 
+                                <a href="{{ path('remove_cart', {'id': item.product.id}) }}"><img src="\img\minus.png" class="m-1"></a>
+                                Quantity : {{ item.quantity }} 
+                                <a href="{{ path('add_cart', {'id': item.product.id}) }}"><img src="\img\plus.png" class="m-1"></a>
+                            </p>
+                            <p> Price : {{ item.product.price * item.quantity}} $
+                            <a href="{{ path('delete_cart', {'id': item.product.id}) }}"><img src="\img\delete.png" alt="" class="m-1"></a>
+                            </p>
                         </div>
+                        <hr>
                     {% endfor %}
                     <div class="col-sm mb-3">
                         <h5>Total of card : </h5>
-                        <h4>{{ total | number_format(2, '.', ',')}} $</h4>
+                        <h4>{{ total | number_format(2, '.', ',') }} $</h4>
                     </div>
                 </div>
             </div>

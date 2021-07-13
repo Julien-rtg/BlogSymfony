@@ -7,6 +7,7 @@ use App\Service\CartService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
@@ -31,28 +32,31 @@ class CartController extends AbstractController{
      */
     public function add($id, CartService $cartservice, Request $request){
         $cartservice->add($id);
+        $route = $request->headers->get('referer');
 
-        return $this->redirectToRoute('homepage');
+        return new RedirectResponse($route);
     }
 
 
     /**
      * @Route ("/cart/remove/{id}", name="remove_cart")
      */
-    public function remove($id, CartService $cartservice){
+    public function remove($id, CartService $cartservice, Request $request){
         $cartservice->remove($id);
+        $route = $request->headers->get('referer');
 
-        return $this->redirectToRoute('homepage');
+        return new RedirectResponse($route);
     }
 
     
     /**
      * @Route ("/cart/delete/{id}", name="delete_cart")
      */
-    public function delete($id, CartService $cartservice){
+    public function delete($id, CartService $cartservice, Request $request){
         $cartservice->delete($id);
+        $route = $request->headers->get('referer');
 
-        return $this->redirectToRoute('homepage');
+        return new RedirectResponse($route);
     }
 
 }

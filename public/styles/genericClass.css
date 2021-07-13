@@ -1,0 +1,11 @@
+.categoryProducts{
+    text-decoration: none;
+    color: rgb(255, 83, 83);
+}
+.boldProductName{
+    font-weight: bold;
+}
+.itemCard img{
+    width: 22px;
+    height: 22px;
+}

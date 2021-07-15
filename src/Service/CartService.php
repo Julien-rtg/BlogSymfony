@@ -28,6 +28,21 @@ class CartService {
         $this->session->set('cart', $cart);
     }
 
+    public function recalc(int $id) {
+        $cart = $this->session->get('cart', []);
+
+        if(isset($_POST)){
+            foreach($_POST as $id => $quantity){
+                $cart[$id] = $quantity;
+            }
+        } else {
+            return false;
+        }
+
+        $this->session->set('cart', $cart);
+    }
+
+
     public function remove(int $id) {
         $cart = $this->session->get('cart', []);
 

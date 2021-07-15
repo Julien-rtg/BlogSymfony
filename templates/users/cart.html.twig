@@ -5,6 +5,7 @@
     <div class="container">
         
         {% if items | length > 0 %}
+        
             <table class="table">
                 <thead>
                     <tr>
@@ -21,9 +22,10 @@
                             <td>{{ item.product.name }}</td>
                             <td>{{ item.product.price }}</td>
                             <td>
-                                <a href="{{ path('add_cart', {'id': item.product.id}) }}"><img src="img\plus.png" class="m-1"></a>
-                                <p>{{ item.quantity }} </p>
-                                <a href="{{ path('remove_cart', {'id': item.product.id}) }}"><img src="img\minus.png" class="m-1"></a>
+                                <form action="/cart/recalc/{{item.product.id}}" method="POST">
+                                    <input type="number" name="{{item.product.id}}" value="{{ item.quantity }}" class="inputUpdate">
+                                    <button type="submit" class="btn btn-warning">Update</button>
+                                </form>
                             </td>
                             <td>{{ item.product.price * item.quantity }}</td>
                             <td>

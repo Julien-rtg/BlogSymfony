@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
@@ -16,8 +17,8 @@ class CartController extends AbstractController{
     /**
      * @Route ("/cart", name = "cart")
      */
-    public function cart(CartService $cartservice){
-
+    public function cart(CartService $cartservice, SessionInterface $session){
+        
         return $this->render(
             'users/cart.html.twig',
             [
@@ -37,6 +38,15 @@ class CartController extends AbstractController{
         return new RedirectResponse($route);
     }
 
+    /**
+     * @Route ("/cart/recalc/{id}", name="recalc_cart")
+     */
+    public function recalc(int $id, CartService $cartservice, Request $request){
+        $cartservice->recalc($id);
+        $route = $request->headers->get('referer');
+
+        return new RedirectResponse($route);
+    }
 
     /**
      * @Route ("/cart/remove/{id}", name="remove_cart")

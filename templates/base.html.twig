@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}LPF{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <link rel="stylesheet" href="/styles/bootstrap.min.css">
         <link rel="stylesheet" href="/styles/app.css">
@@ -14,7 +15,7 @@
     </head>
     <body>
         {% block header %}
-            <nav class="navbar sticky-top navbar-expand-lg navbar-light">
+            <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -22,17 +23,17 @@
 
                     <div class="collapse navbar-collapse" id="navbarColor01">
                         <ul class="navbar-nav m-auto">
-                            <li class="nav-item">
-                                <a class="nav-link active text-white" href="{{ path('homepage') }}">Home</a>
+                            <li class="nav-item pe-3">
+                                <a class="nav-link active" href="{{ path('homepage') }}">Home</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="{{  path('cart') }}">Cart</a>
+                            <li class="nav-item pe-3">
+                                <a class="nav-link" href="{{  path('cart') }}">Cart</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="{{ path('about') }}">About</a>
+                            <li class="nav-item pe-3">
+                                <a class="nav-link " href="{{ path('about') }}">About</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="{{ path('app_login') }}">My Account</a>
+                            <li class="nav-item pe-3">
+                                <a class="nav-link " href="{{ path('app_login') }}">My Account</a>
                             </li>
                             {% if app.user.roles is defined %}
                                 {% for role in app.user.roles %}
@@ -70,7 +71,7 @@
 
         {% block footer %}
 
-            <footer class="text-center text-white">
+            <footer class="text-center text-white bg-light">
                 <div class="container p-4 pb-0">
                     <section class="mb-4">
                         <!-- Facebook -->
@@ -81,7 +82,7 @@
                     </section>
                 </div>
 
-                <div class="d-flex justify-content-center mb-5">
+                {# <div class="d-flex justify-content-center mb-5">
                     <div class="mapouter">
                         <div class="gmap_canvas">
                             <iframe width="500" height="400" id="gmap_canvas" 
@@ -89,7 +90,7 @@
                                 scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.whatismyip-address.com"></a><br>
                         </div>
                     </div>
-                </div>
+                </div> #}
 
                 <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
                     © 2020 Copyright:

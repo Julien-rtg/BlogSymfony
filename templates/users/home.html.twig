@@ -58,12 +58,10 @@
                     {% for item in items %}
                         <div class="itemCard col-sm mb-3">
                             <p class="boldProductName">{{ item.product.name }}</p>
-                            <p> 
-                                <form action="/cart/recalc/{{item.product.id}}" method="POST">
-                                    <p>Quantity : <input type="number" name="{{item.product.id}}" value="{{ item.quantity }}" class="inputUpdate"></p>
-                                    <button type="submit" class="btn btn-warning">Update</button>
-                                </form>
-                            </p>
+                            <form action="/cart/recalc/{{item.product.id}}" method="POST" class="quantityCartHome">
+                                <p>Quantity : <input type="number" name="{{item.product.id}}" value="{{ item.quantity }}" class="inputUpdate"></p>
+                                <button type="submit" class="btn btn-warning btn-sm ms-2 mt-1">Update</button>
+                            </form>
                             <p> Price : {{ item.product.price * item.quantity}} $
                             <a href="{{ path('delete_cart', {'id': item.product.id}) }}"><img src="\img\delete.png" alt="" class="m-1"></a>
                             </p>

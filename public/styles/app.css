@@ -2,9 +2,7 @@ body {
     background-color: rgb(255, 255, 255);
 }
 /* NAVBAR */
-nav {
-    background-color: #45637d;
-}
+
 /* !NAVBAR */
 /* HOME */
 
@@ -21,13 +19,20 @@ nav {
 
     padding: 0%;
     padding-top: 2%;
-    }
+}
 
+.quantityCartHome {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.btn-sm {
+    height: 25px;
+    
+}
 /* !HOME */
 /* GMAP FOOTER */
-footer {
-    background-color: #45637d;
-}
+
 
 .mapouter {
     position:relative;
@@ -43,16 +48,3 @@ footer {
     width:500px;
 }
 /* !GMAP FOOTER */
-
-@media screen and (max-width: 600px) {
-    .mainContainer{
-        width: 200px;
-        height: 200px;
-        background-color: red;
-    }
-    .topContainer {
-        width: 200px;
-        height: 200px;
-        background-color: red;
-    }
-}

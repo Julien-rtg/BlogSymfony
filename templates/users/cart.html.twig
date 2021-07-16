@@ -24,7 +24,7 @@
                             <td>
                                 <form action="/cart/recalc/{{item.product.id}}" method="POST">
                                     <input type="number" name="{{item.product.id}}" value="{{ item.quantity }}" class="inputUpdate">
-                                    <button type="submit" class="btn btn-warning">Update</button>
+                                    <button type="submit" class="btn btn-warning btn-sm mb-1">Update</button>
                                 </form>
                             </td>
                             <td>{{ item.product.price * item.quantity }}</td>

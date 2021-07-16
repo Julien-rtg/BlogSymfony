@@ -33,12 +33,17 @@
                 </div>
             #}
 
-            <button class="btn btn-lg btn-primary" type="submit"> Sign in </button>
-            {% if not app.user %}
-                <a href="{{path('app_forgot_password_request')}}" class="btn btn-lg btn-danger">Forgot Password</a>
-            {% endif %}
-            <h2 class="h3 mb-3 font-weight-normal">Create an account here :</h2>
-            <a href="{{path('app_register')}}" class="btn btn-lg btn-primary">Create an account</a>
+            <div class="btnFormAccount">
+                <div class="btnFormFirst mt-3">
+                    <button class="btn btn-lg btn-success btnSignIn" type="submit"> Sign in </button>
+                    {% if not app.user %}
+                        <a href="{{path('app_forgot_password_request')}}" class="btn btn-lg btn-danger btnForgotPass">Forgot Password</a>
+                    {% endif %}
+                </div>
+                <div class="btnFormSecond mt-3">
+                    <a href="{{path('app_register')}}" class="btnCreateAccount">Create an account</a>
+                </div>
+            </div>
         </form>
 
     </div>

@@ -2,9 +2,15 @@
 
 {% block body %}
 
-    <div class="container">
-        <a href="{{ path('index_product') }}" class="btn btn-primary">Manage Product</a>
-        <a href="{{ path('index_category') }}" class="btn btn-primary">Manage Category</a>
+    <div class="container containerAdmin">
+        <div class="btnsAdmin me-2 imgProduct">
+            <a href="{{ path('index_product') }}" class="textDecoNone btnAdmin">Product</a>
+            <img src="/img/products.jpg" alt="" class="opacityImg">
+        </div>
+        <div class="btnsAdmin ms-2 imgCategory">
+            <a href="{{ path('index_category') }}" class="textDecoNone btnAdmin ">Category</a>
+            <img src="/img/category.jpg" alt="" class="opacityImg">
+        </div>
     </div>
 
 {% endblock %}

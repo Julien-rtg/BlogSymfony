@@ -3,28 +3,25 @@
 
 {% block body %}
 
-    <div class="container">
+    <div class="container containerManage mb-5">
 
-        <div class="addProduct">
-            <a class="btn btn-success" href="{{ path('create_product') }}">Add product</a>
+        <h1>Manage Products : </h1>
+        <div class="addProduct btnProduct mb-2">
+            <a class="btn oneBtn btn-success" href="{{ path('create_product') }}">Add product</a>
         </div>
 
-        <div class="editProduct">
-
-            <label for="products-select">Modifier le produit : </label>
-            <select name="products" id="products-select" class="btn btn-primary" onchange="location = this.value;">
-                <option value="">Select Product to Modify</option>
+        <div class="editProduct btnProduct mb-2">
+            <select name="products" id="products-select" class="btn oneBtn btn-primary" onchange="location = this.value;">
+                <option value="">Modify product</option>
                 {% for product in products %}
                     <option value="{{ path('edit_product', {'id' : product.id}) }}">{{ product.name }}</option>
                 {% endfor %}
             </select>
-        
         </div>
     
-        <div class="removeProduct">
-            <label for="products-select">Supprimer le produit : </label>
-            <select name="products" id="products-select" class="btn btn-danger" onchange="location = this.value;">
-                <option value="">Select Product to Delete</option>
+        <div class="removeProduct btnProduct mb-2">
+            <select name="products" id="products-select" class="btn oneBtn btn-danger" onchange="location = this.value;">
+                <option value="">Delete product</option>
                 {% for product in products %}
                     <option value="{{ path('remove_product', {'id' : product.id}) }}">{{ product.name }}</option>
                 {% endfor %}

@@ -53,6 +53,57 @@ body {
 }
 
 /*!ACCOUNT*/
+/*ADMIN*/
+.containerAdmin{
+    display: flex;
+    flex-direction: row;
+}
+.btnsAdmin{
+    width: 50%;
+    height: 90%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.opacityImg{
+    position: absolute;
+    opacity: 0.65;
+}
+.btnAdmin:hover ~ .opacityImg{
+    transition-duration : 1s;
+    opacity: 0.3;
+}
+.btnAdmin{
+    position: relative;
+    z-index: 2;
+    font-size: 40px;
+    color: rgb(0, 0, 0);
+}
+
+
+.containerManage{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.btnProduct {
+    display: flex;
+    justify-content: center;
+    height: 33%;
+    width: 100%;
+}
+
+.oneBtn{
+    font-size: 25px;
+    flex-grow: 1;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/*!ADMIN*/
 /* GMAP FOOTER */
 
 html, body {

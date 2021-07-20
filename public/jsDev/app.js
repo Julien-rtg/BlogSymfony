@@ -18,7 +18,7 @@ $('.deleteButton').on('click', function() {
 
             setTimeout( function () { 
                 form.submit();
-            }, 1400);
+            }, 1200);
 
             Swal.fire(
             'Deleted!',

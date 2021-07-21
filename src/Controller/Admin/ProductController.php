@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
@@ -73,12 +74,29 @@ class ProductController extends AbstractController {
     /**
      * @Route("/admin/edit-product/{id}", name="edit_product")
      */
-    public function editProduct(Product $product, Request $request) : Response {
+    public function editProduct(Product $product, Request $request, SluggerInterface $slugger, Filesystem $filesystem) : Response {
         $form = $this->createForm(ProductType::class, $product);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $product = $form->getData();
+
+            $file = $form->get('image')->getData();
+            if(!empty($file)){
+                $image = $product->getImage();
+                $filesystem->remove('img/' . $image);
+
+                $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
+                try{
+                    $file->move('img', $newFilename);
+                } catch(FileException $e){
+                    return $e->getMessage();
+                }
+    
+                $product->setImage($newFilename);
+            }
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($product);
@@ -101,13 +119,16 @@ class ProductController extends AbstractController {
     /**
      * @Route("/admin/remove-product/{id}", name="remove_product")
      */
-    public function removeProduct(Product $product, Request $request): Response {
+    public function removeProduct(Product $product, Request $request, Filesystem $filesystem): Response {
         $form = $this->createForm(ProductType::class, $product);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $product = $form->getData();
             
+            $image = $product->getImage();
+            $filesystem->remove('img/' . $image);
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($product);
             $entityManager->flush();

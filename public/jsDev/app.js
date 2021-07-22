@@ -1,4 +1,4 @@
-
+// DOUBLE CONFIRMATION WHEN DELETING A PRODUCT
 $('.deleteButton').on('click', function() {
 
     event.preventDefault();
@@ -30,4 +30,22 @@ $('.deleteButton').on('click', function() {
 
     })
     
+});
+
+// LOAD IMAGE BEFORE SUBMIT FORM
+function readURL(input) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('.imgLoad').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$(".custom-file-input").change(function(){
+    readURL(this);
 });

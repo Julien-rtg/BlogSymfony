@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    <div class="container">
+        <h1>Account of {{app.user.firstName}} {{app.user.lastName}} </h1>
+
+        {{dump(app.user)}}
+
+        {% if app.user.isverified == null %}
+            <div class="alert alert-danger text-center">
+                <h4>User not verified, please verify your email</h4>
+            </div>
+            <p>If you not receive email click here <a class="btn btn-success" href="{{path('app_send_email', { 'id' : app.user.id})}}">Send Email</a> </p>
+        {% else %}
+            <div class="alert alert-success text-center">
+                <h4>User verified</h4>
+            </div>
+        {% endif %}
+
+    </div>
+
+{% endblock %}

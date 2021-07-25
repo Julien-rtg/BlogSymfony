@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    <div class="container">
+        <h1 class="text-center mb-4">Account of {{app.user.firstName}} {{app.user.lastName}} </h1>
+
+        {% if app.user.isverified == null %}
+            <div class="alert alert-danger text-center mb-4">
+                <h4>User not verified, please verify your email</h4>
+            </div>
+            <p>If you not receive email click here <a class="btn btn-success" href="{{path('app_send_email', { 'id' : app.user.id})}}">Send Email</a> </p>
+        {% else %}
+            <div class="alert alert-success text-center mb-4">
+                <h4>User verified</h4>
+            </div>
+        {% endif %}
+        <hr>
+        <div class="contactDetails">
+            <h4 class="text-center">Contact Details</h4>
+            <p><b> First Name : </b> {{app.user.firstName}}</p>
+            <p><b> Last Name : </b> {{app.user.lastName}}</p>
+            <p><b> Email : </b> {{app.user.email}}</p>
+            <a href="{{path('user_edit')}}" class="btn btn-primary">Modify contact details</a>
+        </div>
+        <hr>
+        <a href="#" class="btn btn-primary">Modify password</a>
+        <a href="#" class="btn btn-danger">Delete Account</a>
+    </div>
+
+{% endblock %}

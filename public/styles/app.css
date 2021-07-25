@@ -91,6 +91,7 @@ body {
 .btnProduct {
     display: flex;
     justify-content: center;
+    align-self: center;
     height: 33%;
     width: 100%;
 }
@@ -101,7 +102,6 @@ body {
     
     display: flex;
     align-items: center;
-    justify-content: center;
 }
 /*!ADMIN*/
 /* GMAP FOOTER */

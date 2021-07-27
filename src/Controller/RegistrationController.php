@@ -54,6 +54,10 @@ class RegistrationController extends AbstractController {
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
             // do anything else you need here, like send an email
+            $this->addFlash(
+                'success',
+                'An Email have been sent, you need to verify your email before order !'
+            );
 
             return $this->redirectToRoute('homepage');
         }

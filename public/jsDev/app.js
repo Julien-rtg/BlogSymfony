@@ -1,9 +1,9 @@
-// DOUBLE CONFIRMATION WHEN DELETING A PRODUCT
+// DOUBLE CONFIRMATION WHEN DELETING
 $('.deleteButton').on('click', function() {
 
     event.preventDefault();
 
-    const form = $(this).parents('form');
+    const url = $(this).attr('href');
 
     Swal.fire({
         title: 'Are you sure?',
@@ -17,7 +17,7 @@ $('.deleteButton').on('click', function() {
         if (result.isConfirmed) {
 
             setTimeout( function () { 
-                form.submit();
+                window.location.href = url;
             }, 1200);
 
             Swal.fire(
@@ -34,14 +34,11 @@ $('.deleteButton').on('click', function() {
 
 // LOAD IMAGE BEFORE SUBMIT FORM
 function readURL(input) {
-
     if (input.files && input.files[0]) {
         var reader = new FileReader();
-
         reader.onload = function (e) {
             $('.imgLoad').attr('src', e.target.result);
         }
-
         reader.readAsDataURL(input.files[0]);
     }
 }

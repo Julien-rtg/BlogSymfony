@@ -2,15 +2,12 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
 use App\Form\EditAccountType;
-use App\Repository\UserRepository;
-use App\Form\ChangePasswordFormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserAccountController extends AbstractController
 {
@@ -22,7 +19,7 @@ class UserAccountController extends AbstractController
         if(!$this->getUser()){
             return $this->redirectToRoute('app_login');
         }
-        
+
         return $this->render('security/userAccount.html.twig');
 
     }
@@ -73,29 +70,24 @@ class UserAccountController extends AbstractController
     }
 
     /**
-     * @Route("user/account/reset", name="user_reset_pass")
+     * @Route("user/account/delete", name="user_delete")
      */
-    public function resetPassword(Request $request, UserPasswordHasherInterface $passwordHasher): Response {
+    public function deleteAccount(): Response{
+
         $user = $this->getUser();
-        $form = $this->createForm(ChangePasswordFormType::class);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            // Encode the plain password, and set it.
-            $encodedPassword = $passwordHasher->hashPassword(
-                $user,
-                $form->get('plainPassword')->getData()
-            );
+        $this->container->get('security.token_storage')->setToken(null);
 
-            $user->setPassword($encodedPassword);
-            $this->getDoctrine()->getManager()->flush();
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($user);
+        $entityManager->flush();
 
-            return $this->redirectToRoute('app_login');
-        }
-
-        return $this->render('security/reset_password/reset.html.twig', [
-            'resetForm' => $form->createView(),
-        ]);
+        $this->addFlash(
+            'success',
+            'Account Deleted successfully'
+        );
+        
+        return $this->redirectToRoute('homepage');
     }
 
 }

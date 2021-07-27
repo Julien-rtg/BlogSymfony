@@ -10,7 +10,10 @@
             {% endif %}
 
             <div class="form-group">
-                <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+                <div class="text-center mb-5">
+                    <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+                    <p>Don't have an account ? <a href="{{path('app_register')}}">Sign in</a></p>
+                </div>
                 <div class="form-floating mb-3">
                     <input type="email" class="form-control" name="email" id="inputEmail" placeholder="name@example.com" autocomplete="email" required autofocus>
                     <label for="inputEmail">Email address</label>
@@ -39,9 +42,6 @@
                     {% if not app.user %}
                         <a href="{{path('app_forgot_password_request')}}" class="btn btn-lg btn-danger btnForgotPass">Forgot Password</a>
                     {% endif %}
-                </div>
-                <div class="btnFormSecond mt-3">
-                    <a href="{{path('app_register')}}" class="btnCreateAccount">Create an account</a>
                 </div>
             </div>
         </form>

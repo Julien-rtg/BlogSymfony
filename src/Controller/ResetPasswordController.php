@@ -37,17 +37,25 @@ class ResetPasswordController extends AbstractController
      *
      * @Route("", name="app_forgot_password_request")
      */
-    public function request(Request $request, MailerInterface $mailer): Response
-    {
+    public function request(Request $request, MailerInterface $mailer): Response {
+        
+        if($this->getUser()){ // IF USER IS CONNECTED THROW DIRECTLY AN EMAIL
+            return $this->processSendingPasswordResetEmail(
+                $this->getUser()->getEmail(),
+                $mailer
+            );
+        }
+
         $form = $this->createForm(ResetPasswordRequestFormType::class);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
             return $this->processSendingPasswordResetEmail(
                 $form->get('email')->getData(),
                 $mailer
             );
         }
+
 
         return $this->render('security/reset_password/request.html.twig', [
             'requestForm' => $form->createView(),
@@ -123,6 +131,11 @@ class ResetPasswordController extends AbstractController
             // The session is cleaned up after the password has been changed.
             $this->cleanSessionAfterReset();
 
+            $this->addFlash(
+                'success',
+                "Password modified !",
+            );
+
             return $this->redirectToRoute('app_login');
         }
 
@@ -148,12 +161,12 @@ class ResetPasswordController extends AbstractController
             // the lines below and change the redirect to 'app_forgot_password_request'.
             // Caution: This may reveal if a user is registered or not.
             //
-            // $this->addFlash('reset_password_error', sprintf(
+            // $this->addFlash('danger', sprintf(
             //     'There was a problem handling your password reset request - %s',
             //     $e->getReason()
             // ));
 
-            return $this->redirectToRoute('app_check_email');
+            // return $this->redirectToRoute('app_login');
         }
 
         $email = (new TemplatedEmail())

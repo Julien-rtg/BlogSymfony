@@ -88,33 +88,29 @@ class CategoryController extends AbstractController {
     /**
      * @Route("/admin/remove-category/{id}", name="remove_category")
      */
-    public function removeCategory(Category $category, Request $request): Response {
+    public function removeCategory(Category $category): Response {
 
-        $form = $this->createForm(CategoryType::class, $category);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($category);
+        $entityManager->flush();
 
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+        $this->addFlash(
+            'danger',
+            "La catégorie <strong>{$category->getName()}</strong> a bien été supprimée !",
+        );
 
-            $category = $form->getData();
+        return $this->redirectToRoute('index_category');
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($category);
-            $entityManager->flush();
+    }
 
-            $this->addFlash(
-                'danger',
-                "La catégorie <strong>{$category->getName()}</strong> a bien été supprimée !",
-            );
-
-            return $this->redirectToRoute('index_category');
-        }
+    /**
+     * @Route("/admin/show-category/{id}", name="show_admin_category")
+     */
+    public function showCategory(Category $category): Response{
 
         return $this->render('admin/category/remove.html.twig', [
-            'form' => $form->createView(),
             'category' => $category
         ]);
     }
-
-
 
 }

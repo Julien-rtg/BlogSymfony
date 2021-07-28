@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Product;
 use App\Entity\Category;
 use App\Form\ProductType;
+use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -119,32 +120,34 @@ class ProductController extends AbstractController {
     /**
      * @Route("/admin/remove-product/{id}", name="remove_product")
      */
-    public function removeProduct(Product $product, Request $request, Filesystem $filesystem): Response {
-        $form = $this->createForm(ProductType::class, $product);
+    public function removeProduct(Product $product, Filesystem $filesystem): Response {
 
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $product = $form->getData();
-            
-            $image = $product->getImage();
-            $filesystem->remove('img/' . $image);
+        $image = $product->getImage();
+        $filesystem->remove('img/' . $image);
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($product);
-            $entityManager->flush();
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($product);
+        $entityManager->flush();
 
-            $this->addFlash(
-                'danger',
-                "Le produit <strong>{$product->getName()}</strong> a bien été supprimé !",
-            );
+        $this->addFlash(
+            'danger',
+            "Le produit <strong>{$product->getName()}</strong> a bien été supprimé !",
+        );
 
-            return $this->redirectToRoute('index_product');
-        }
-
-        return $this->render('admin/product/remove.html.twig', [
-            'form' => $form->createView(),
-            'product' => $product
-        ]);
+    
+        return $this->redirectToRoute('index_product');
     }
 
+    /**
+     * @Route("/admin/show-product/{id}", name="show_admin_product")
+     */
+    public function showProduct(int $id, Product $product, CategoryRepository $categoryRepository): Response{
+
+        $categories = $categoryRepository->findByProductId($id);
+
+        return $this->render('admin/product/remove.html.twig', [
+            'product' => $product,
+            'categories' => $categories
+        ]);
+    }
 }

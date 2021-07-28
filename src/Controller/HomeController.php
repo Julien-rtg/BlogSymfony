@@ -38,8 +38,8 @@ class HomeController extends AbstractController {
      */
     public function showCategory(string $slug, ProductRepository $productRepository, CategoryRepository $categoryRepository, CartService $cartService) : Response{
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
-        $data = $categoryRepository->findOneBySomeField($slug);
-        $products = $productRepository->findByCategory($data);
+        $data = $categoryRepository->findOneBySomeField($slug); // GET ALL CATEGORY WHO MATCH WITH THE SLUG PASSED IN URL, SLUG IS THE CATEGORY NAME
+        $products = $productRepository->findByCategory($data); // GET ALL PRODUCT WHO MATCH WITH CATEGORY
         $categories = $categoryRepository->findAll();
 
         return $this->render('users/home.html.twig',

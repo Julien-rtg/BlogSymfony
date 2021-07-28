@@ -3,22 +3,15 @@
 {% block body %}
 
     <div class="container">
-        <h1> Supprimer la catégorie : {{ category.name }}</h1>
+        <h1 class="text-center mb-3"> Supprimer la catégorie : {{ category.name }}</h1>
 
-        {{ form_start(form) }}
-            <div class="my-custom-class-for-errors">
-                {{ form_errors(form) }}
+        <div class="row">
+            <div class="col">
+                <h4>Name :</h4>
+                <p>{{category.name}}</p>
             </div>
-
-            <div class="row">
-                <div class="col">
-                    {{ form_widget(form) }}
-                </div>
-            </div>
-
-            <button type="submit" class="deleteButton btn-lg btn btn-danger">Delete Category</button>
-
-        {{ form_end(form) }}
+        </div>
+        <a href="{{ path('remove_category', {'id' : category.id}) }}" class="btn btn-danger deleteButton">Delete</a>
     </div>
 
 {% endblock %}

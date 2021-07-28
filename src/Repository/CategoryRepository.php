@@ -35,9 +35,8 @@ class CategoryRepository extends ServiceEntityRepository
         ;
     }
     */
-
     
-    public function findOneBySomeField($value): ?Category
+    public function findOneBySomeField($value): ?Category // GET CATEGORIES WHO MATCH WITH THE SLUG PASSED IN URL
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.name = :val')
@@ -47,17 +46,15 @@ class CategoryRepository extends ServiceEntityRepository
         ;
     }
     
+    public function findByProductId($data){ // GET CATEGORY WHO MATCH WITH ID PRODUCT
+
+        return $this->createQueryBuilder('c')
+            ->innerJoin('c.products', 'p')
+            ->where('p.id = :product_id')
+            ->setParameter('product_id', $data)
+            ->getQuery()
+            ->getResult();
+    }
 
 
-        // récupérer les produits correspondant a l'id de la categorie
-
-        // TABLE CATEGORIE
-        // slug -> categorie ID
-
-        // TABLE PRODUCT_CATEGORIE
-        // categorie ID -> récupere ID du produit
-
-        // TABLE PRODUCT
-        // id du produit -> tout le produit
-    
 }

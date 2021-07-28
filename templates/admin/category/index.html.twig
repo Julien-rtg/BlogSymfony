@@ -25,7 +25,7 @@
             <select name="categories" id="categories-select" class="btn oneBtn btn-danger" onchange="location = this.value;">
                 <option value="">Delete category</option>
                 {% for category in categories %}
-                    <option value="{{ path('remove_category', {'id' : category.id}) }}">{{ category.name }}</option>
+                    <option value="{{ path('show_admin_category', {'id' : category.id}) }}">{{ category.name }}</option>
                 {% endfor %}
             </select>
         </div>

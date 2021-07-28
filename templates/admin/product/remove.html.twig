@@ -3,22 +3,42 @@
 {% block body %}
 
     <div class="container">
-        <h1> Supprimer le produit : {{ product.name }}</h1>
+        <h1 class="text-center mb-5"> Supprimer le produit : {{ product.name }}</h1>
 
-        {{ form_start(form) }}
-            <div class="my-custom-class-for-errors">
-                {{ form_errors(form) }}
+        <div class="row">
+            <div class="col">
+                <h4>Name :</h4>
+                <p> {{product.name}} </p>
             </div>
-
-            <div class="row">
-                <div class="col">
-                    {{ form_widget(form)}}
-                </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h4>Price :</h4>
+                <p> {{product.price}} €</p>
             </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h4>Description :</h4>
+                <p> {{product.description}} </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h4>Image :</h4>
+                <img src="/img/{{product.image}}" alt="">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h4>Categories :</h4>
+                {% for category in categories %}
+                    <p>{{category.name}}</p>
+                {% endfor %}
+            </div>
+        </div>
 
-            <button type="submit" class="deleteButton btn btn-danger btn-lg mt-3">Delete Product</button>
-
-        {{ form_end(form) }}
+        <a href="{{ path('remove_product', {'id' : product.id}) }}" class="btn btn-danger deleteButton">Delete</a>
 
     </div>
 

@@ -28,12 +28,11 @@
 
                                 <img src="{{product.image}}" alt="">
                                 <div class="card-body text-center">
-                                    {{product.description}} <br>
-                                    
+                                    <p>{{product.description}}</p>
                                 </div>
-                                <div class="card-footer">
-                                    <a href="{{ path('add_cart', { 'id' : product.id}) }}" class="btn btn-success">Add to cart</a>
-                                    {{product.price}} €
+                                <div class="card-footer text-center">
+                                    <a href="{{ path('add_cart', { 'id' : product.id}) }}" class="btn btn-success btnCart">Add to cart</a>
+                                    <p class="mb-0 mt-2">{{product.price}} €</p>
                                 </div>
                             </div>
                         </div>

@@ -2,7 +2,26 @@ body {
     background-color: rgb(255, 255, 255);
 }
 /* NAVBAR */
-
+.firstW{
+    color: blue;
+}
+.thirdW{
+    color: red;
+}
+.navDiv{
+    width: 33%;
+    display: flex;
+    justify-content: center;
+}
+.navDiv:first-child{
+    justify-content: flex-start;
+}
+.navDiv:last-child{
+    justify-content: flex-end;
+}
+.nav-item-center{
+    padding-left: 1rem;
+}
 /* !NAVBAR */
 /* HOME */
 
@@ -138,3 +157,13 @@ body {
     width:500px;
 }
 /* !GMAP FOOTER */
+
+@media screen and (max-width: 992px) {
+    .navDiv, .navDiv:last-child{
+        justify-content: flex-start;
+    }
+    .nav-item-center{
+        padding-left: 0rem;
+    }
+
+}

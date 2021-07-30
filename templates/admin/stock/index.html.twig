@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <h1 class="text-center mb-5">Stock</h1>
+        {% for product in products %}
+            <div class="rowProduct mb-5">
+                <p class="m-0"><b>{{ product.name }}</b></p>
+                <div class="stockProduct">
+                    <a href="{{ path('add_stock', {'id' : product.id}) }}" class="pe-2"><img src="/img/plus.png" alt=""></a>
+                    {% if product.stock == false %}
+                        <p class="alert alert-danger m-0">Out of Stock</p>
+                    {% else %}
+                        <p class="alert alert-success m-0">En stock</p>
+                    {% endif %}
+                    <a href="{{ path('remove_stock', {'id' : product.id}) }}" class="ps-2"><img src="/img/minus.png" alt=""></a>
+                </div>
+            </div>
+            <hr class="mb-5">
+        {% endfor %}
+    </div>
+
+{% endblock %}

@@ -2,15 +2,31 @@
 
 {% block body %}
 
-    <div class="container containerAdmin">
-        <div class="btnsAdmin me-2 imgProduct">
-            <a href="{{ path('index_product') }}" class="textDecoNone btnAdmin">Product</a>
-            <img src="/img/products.jpg" alt="" class="opacityImg">
+    <div class="container mainContainerAdmin">
+
+        <div class="duoContainerAdmin">
+            <div class="singleContainerAdmin me-2">
+                <a href="{{ path('index_stock') }}" class="textDecoNone btnAdmin">Stock</a>
+                <img src="/img/products.jpg" alt="" class="imgAdmin">
+            </div>
+            <div class="singleContainerAdmin ms-2">
+                <a href="" class="textDecoNone btnAdmin">Command</a>
+                <img src="/img/products.jpg" alt="" class="imgAdmin">
+            </div>
         </div>
-        <div class="btnsAdmin ms-2 imgCategory">
-            <a href="{{ path('index_category') }}" class="textDecoNone btnAdmin ">Category</a>
-            <img src="/img/category.jpg" alt="" class="opacityImg">
+
+        <div class="duoContainerAdmin mb-5">
+            <div class="singleContainerAdmin me-2">
+                <a href="{{ path('index_product') }}" class="textDecoNone btnAdmin">Product</a>
+                <img src="/img/products.jpg" alt="" class="imgAdmin">
+            </div>
+            <div class="singleContainerAdmin ms-2">
+                <a href="{{ path('index_category') }}" class="textDecoNone btnAdmin ">Category</a>
+                <img src="/img/category.jpg" alt="" class="imgAdmin">
+            </div>
         </div>
+        
+
     </div>
 
 {% endblock %}

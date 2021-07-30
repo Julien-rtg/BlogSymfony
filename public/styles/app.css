@@ -52,6 +52,7 @@ body {
 .btnCart {
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 /* !HOME */
 /*ACCOUNT*/
@@ -77,26 +78,23 @@ body {
 
 /*!ACCOUNT*/
 /*ADMIN*/
-.containerAdmin{
+    /*index*/
+.mainContainerAdmin{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.duoContainerAdmin{
     display: flex;
     flex-direction: row;
 }
-.btnsAdmin{
-    width: 50%;
-    height: 90%;
-
+.singleContainerAdmin{
     display: flex;
     align-items: center;
     justify-content: center;
 
-}
-.opacityImg{
-    position: absolute;
-    opacity: 0.65;
-}
-.btnAdmin:hover ~ .opacityImg{
-    transition-duration : 1s;
-    opacity: 0.3;
+    width: 50%;
+    height: 450px;
 }
 .btnAdmin{
     position: relative;
@@ -104,8 +102,16 @@ body {
     font-size: 40px;
     color: rgb(0, 0, 0);
 }
+.imgAdmin{
+    position: absolute;
+    opacity: 0.65;
+}
+.btnAdmin:hover ~ .imgAdmin{
+    transition-duration : 1s;
+    opacity: 0.3;
+}
 
-
+    /*product*/
 .containerManage{
     display: flex;
     flex-direction: column;
@@ -118,12 +124,22 @@ body {
     height: 33%;
     width: 100%;
 }
-
 .oneBtn{
     font-size: 25px;
     flex-grow: 1;
     
     display: flex;
+    align-items: center;
+}
+    /*stock*/
+.rowProduct {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.stockProduct{
+    display: flex;
+    flex-direction: row;
     align-items: center;
 }
 /*!ADMIN*/

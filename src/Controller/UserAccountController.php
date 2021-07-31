@@ -2,7 +2,11 @@
 
 namespace App\Controller;
 
+use Exception;
+use App\Entity\User;
 use App\Form\EditAccountType;
+use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -27,8 +31,10 @@ class UserAccountController extends AbstractController
     /**
      * @Route("/user/account/edit", name="user_edit")
      */
-    public function editAccount(Request $request): Response{
-        
+    public function editAccount(Request $request, EntityManagerInterface $entityManager): Response{
+        define("fname", $this->getUser()->getfirstName()); // NEED TO MAKE CONSTANT FIRSTNAME AND LASTNAME FOR DISPLAY INSTEAD
+        define("lname", $this->getUser()->getlastName()); // THERE IS A BUG WHEN SUBMITTING NOT VALID FIELD, THE NOT VALID FIELD IS DISPLAY
+
         $form = $this->createForm(EditAccountType::class, $this->getUser());
         $email = $this->getUser()->getEmail();
         $isverif = $this->getUser()->getIsverified();
@@ -38,9 +44,9 @@ class UserAccountController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $user = $form->getData();
+
             $emailModify = $form->get('email')->getData();
             $isverifMod = $form->get('is_verified')->getData();
-            
             if($isverif != $isverifMod){ // GENERATING ERROR IF USER WANT TO HACK VERIF BY DEVCONSOLE
                 $this->addFlash(
                     'danger',
@@ -48,11 +54,10 @@ class UserAccountController extends AbstractController
                 );
                 return $this->redirectToRoute('user_account');
             }
-            if($emailModify != $email) {
+            if($emailModify != $email) { // SET VERIFIED AS FALSE IF HE CHANGE HIS EMAIL
                 $user->setIsverified(false);
             }
 
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
 
@@ -66,6 +71,8 @@ class UserAccountController extends AbstractController
 
         return $this->render('security/userEdit.html.twig', [
             'form' => $form->createView(),
+            'fname' => fname,
+            'lname' => lname
         ]);
     }
 

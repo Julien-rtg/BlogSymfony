@@ -22,10 +22,10 @@
                     {{ form_errors(registrationForm.email )}}
                 </div>
                 <div class="form-group mb-3">
-                    {{ form_widget(registrationForm.Phone, {attr : {'placeholder' : 'Phone (Used for delivery)'}}) }}
+                    {{ form_widget(registrationForm.Phone, {required : false, attr : {'placeholder' : 'Phone (Used for delivery)'}}) }}
                 </div>
                 <div class="form-group mb-3">
-                    {{ form_widget(registrationForm.Address, {attr : {'placeholder' : 'Address (Used for delivery)'}}) }}
+                    {{ form_widget(registrationForm.Address, {required : false, attr : {'placeholder' : 'Address (Used for delivery)'}}) }}
                 </div>
                 <div class="form-group mb-3">
                     {{ form_widget(registrationForm.plainPassword.first, {attr : {'placeholder' : 'Password *'}}) }}

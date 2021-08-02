@@ -17,59 +17,57 @@
     <body>
         {% block header %}
             <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-secondary">
-                <div class="container-fluid">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+                <div class="container-fluid mainNavDiv">
+                    <div class="navDiv">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+                   
+                    <div class="navDivTitle navDiv">
+                        <ul class="navbar-nav">
+                            <li class="nav-item pe-3">
+                                <a class="nav-link" href="{{ path('homepage') }}"><span class="firstW">Le</span> <span class="text-white">Petit</span> <span class="thirdW">Français</span></a>
+                            </li>
+                        </ul>
+                    </div>
 
-                    <div class="collapse navbar-collapse" id="navbarColor01">
+                    <div class="navDivCart navDiv">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link " href="{{ path('cart') }}"><img src="/img/cart.png" alt=""></a>
+                            </li>
+                        </ul>
+                    </div>
                     
-                        <div class="navDiv">
-                            <ul class="navbar-nav">
-                                <li class="nav-item pe-3">
-                                    <a class="nav-link" href="{{ path('homepage') }}"><span class="firstW">Le</span> <span class="text-white">Petit</span> <span class="thirdW">Français</span></a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="navDiv">
-                            <ul class="navbar-nav">
-                                <li class="nav-item nav-item-center">
-                                    <a class="nav-link" href="{{ path('homepage') }}">Home</a>
-                                </li>
-                                <li class="nav-item nav-item-center">
-                                    <a class="nav-link" href="{{  path('cart') }}">Cart</a>
-                                </li>
-                                <li class="nav-item nav-item-center">
-                                    <a class="nav-link " href="{{ path('about') }}">About</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="navDiv">
-                            <ul class="navbar-nav">
-                                <li class="nav-item">
-                                    <a class="nav-link " href="{{ path('app_login') }}">My Account</a>
-                                </li>
+                    <div class="collapse navbar-collapse navNav" id="navbarColor01">
+                        <ul class="navbar-nav">
+                            <li class="nav-item nav-item-center navItemOrder1">
+                                <a class="nav-link" href="{{ path('homepage') }}">Home</a>
+                            </li>
+                            <li class="nav-item nav-item-center navItemOrder2">
+                                <a class="nav-link " href="{{ path('app_login') }}">My Account</a>
+                            </li>
+                            <li class="nav-item nav-item-center navItemOrder3">
+                                <a class="nav-link " href="{{ path('about') }}">About</a>
+                            </li>
+                            <li class="nav-item nav-item-center navItemOrder4">
                                 {% if app.user.roles is defined %}
                                     {% for role in app.user.roles %}
                                         {% if role == "ROLE_ADMIN" %}
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="{{ path('home_admin') }}">Admin</a>
-                                            </li>
+                                            <a class="nav-link" href="{{ path('home_admin') }}">Admin</a>
                                         {% endif %}
                                     {% endfor %}
                                 {% endif %}
+                            </li>
+                            <li class="nav-item nav-item-center navItemOrder5">
                                 {% if app.user %}
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ path('app_logout') }}"><img src="/img/off.png" alt=""></a>
-                                    </li>
+                                    <a class="nav-link" href="{{ path('app_logout') }}"><img src="/img/off.png" alt=""></a>
                                 {% endif %}
-                            
-                            </ul>
-                        </div>
-
+                            </li>
+                        </ul>
                     </div>
-                    
+                
                 </div>
             </nav>
 

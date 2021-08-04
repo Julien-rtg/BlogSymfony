@@ -1,4 +1,5 @@
 // DOUBLE CONFIRMATION WHEN DELETING
+
 $('.deleteButton').on('click', function() {
 
     event.preventDefault();

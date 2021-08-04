@@ -2,8 +2,7 @@
 {% block body %}
 
 
-    <div class="container containerOfPage">
-
+    <div class="container">
         <div class="topContainer text-center">
             <div class="mt-5 logoTop">
                 <img src="https://via.placeholder.com/250x250" alt="" style="border-radius : 50%">
@@ -15,37 +14,12 @@
                 <hr class="my-5">
             </div>
         </div>
-        {{dump(app.user)}}
+    </div>
+    <div class="container-fluid">
         <div class="mainContainer row mb-5">
-            <div class="mainContainerLeft col-md-8">
-                <div class="row">
-                    {% for product in products %}
-                        <div class="col-md-4">
-                            <div class="card bg-light mb-3">
-                                <div class="card-header text-center boldProductName">
-                                    {{product.name}}
-                                </div>
 
-                                <img src="/img/{{product.image}}" alt="">
-                                <div class="card-body text-center">
-                                    <p>{{product.description}}</p>
-                                </div>
-                                <div class="card-footer text-center">
-                                    {% if product.stock == true %}
-                                        <a href="{{ path('add_cart', { 'id' : product.id}) }}" class="btn btn-success btnCart">Add to cart</a>
-                                    {% else %}
-                                        <button class="btn btn-danger btnCart" disabled>Out of Stock</button>
-                                    {% endif %}
-                                    <p class="mb-0 mt-2">{{product.price}} €</p>
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
-
-                </div>
-            </div>
-            <div class="mainContainerRight col-md-4">
-                <div class="showCategory text-center column">
+            <div class="mainContainerLeft col-md-3">
+                <div class="showCategory text-center column js-filter-category">
                     <h3 class="mb-5">Categories</h3>
                     <div class="col-sm mb-3">
                         <a href="{{ path('homepage') }}" class="categoryProducts boldProductName">All products</a>
@@ -56,6 +30,13 @@
                         </div>
                     {% endfor %}
                 </div>
+            </div>
+
+            <div class="mainContainerMid col-md-6 js-filter-content">
+                {% include 'product/product.html.twig' %}
+            </div>
+
+            <div class="mainContainerRight col-md-3">
                 <div class="showCard text-center">
                     <h3 class="mb-5">Your card</h3>
                     <hr>
@@ -78,6 +59,7 @@
                     </div>
                 </div>
             </div>
+            
         </div>
 
     </div>

@@ -1,0 +1,27 @@
+
+{# THIS TEMPLATES IS USED FOR AJAX REQUEST #}
+
+<div class="row">
+    {% for product in products %}
+        <div class="col-md-4 js-filter-content">
+            <div class="card bg-light mb-3">
+                <div class="card-header text-center boldProductName">
+                    {{product.name}}
+                </div>
+
+                <img src="/img/{{product.image}}" alt="">
+                <div class="card-body text-center">
+                    <p>{{product.description}}</p>
+                </div>
+                <div class="card-footer text-center">
+                    {% if product.stock == true %}
+                        <a href="{{ path('add_cart', { 'id' : product.id}) }}" class="btn btn-success btnCart">Add to cart</a>
+                    {% else %}
+                        <button class="btn btn-danger btnCart" disabled>Out of Stock</button>
+                    {% endif %}
+                    <p class="mb-0 mt-2">{{product.price}} €</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

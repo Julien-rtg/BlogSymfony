@@ -5,9 +5,9 @@
 .boldProductName{
     font-weight: bold;
 }
-.itemCard img{
-    width: 22px;
-    height: 22px;
+.tokenImg{
+    width: 32px;
+    height: 32px;
 }
 
 .inputUpdate {

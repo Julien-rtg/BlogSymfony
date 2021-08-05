@@ -7,6 +7,7 @@ use App\Service\CartService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -35,6 +36,15 @@ class CartController extends AbstractController{
         $cartservice->add($id);
         $route = $request->headers->get('referer');
 
+        if($request->isXmlHttpRequest()){
+            return new JsonResponse([
+                'content' => $this->renderView('elements/cart.html.twig', [
+                    'items' => $cartservice->getFullCart(),
+                    'total' => $cartservice->getTotal()
+                ])
+            ]);
+        }
+
         return new RedirectResponse($route);
     }
 
@@ -55,6 +65,15 @@ class CartController extends AbstractController{
         $cartservice->remove($id);
         $route = $request->headers->get('referer');
 
+        if($request->isXmlHttpRequest()){
+            return new JsonResponse([
+                'content' => $this->renderView('elements/cart.html.twig', [
+                    'items' => $cartservice->getFullCart(),
+                    'total' => $cartservice->getTotal()
+                ])
+            ]);
+        }
+
         return new RedirectResponse($route);
     }
 
@@ -65,6 +84,15 @@ class CartController extends AbstractController{
     public function delete($id, CartService $cartservice, Request $request){
         $cartservice->delete($id);
         $route = $request->headers->get('referer');
+
+        if($request->isXmlHttpRequest()){
+            return new JsonResponse([
+                'content' => $this->renderView('elements/cart.html.twig', [
+                    'items' => $cartservice->getFullCart(),
+                    'total' => $cartservice->getTotal()
+                ])
+            ]);
+        }
 
         return new RedirectResponse($route);
     }

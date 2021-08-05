@@ -1,0 +1,29 @@
+<div class="showCard text-center">
+    <h3 class="mb-5">Your card</h3>
+    <hr>
+    {% for item in items %}
+        <div class="itemCard col-sm mb-3">
+            <p class="boldProductName">{{ item.product.name }}</p>
+            <div class="quantity-cart-home mb-3">
+                <div class="icon-cart me-2">
+                    <a href="{{ path('add_cart', {id : item.product.id}) }}"><img src="/img/plus.png" alt="" class=" tokenImg"></a>
+                </div>
+                <div class="icon-cart">
+                    {{ item.quantity }}
+                </div>
+                <div class="icon-cart ms-2">
+                    <a href="{{ path('remove_cart', {id : item.product.id}) }}"><img src="/img/minus.png" alt="" class="tokenImg"></a>
+                </div>
+            </div>
+
+            <p> Price : {{ item.product.price * item.quantity}} $
+            <a href="{{ path('delete_cart', {'id': item.product.id}) }}"><img src="\img\delete.png" alt="" class="m-1"></a>
+            </p>
+        </div>
+        <hr>
+    {% endfor %}
+    <div class="col-sm mb-3">
+        <h5>Total of card : </h5>
+        <h4>{{ total | number_format(2, '.', ',') }} $</h4>
+    </div>
+</div>

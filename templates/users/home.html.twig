@@ -18,8 +18,8 @@
     <div class="container-fluid">
         <div class="mainContainer row mb-5">
 
-            <div class="mainContainerLeft col-md-3">
-                <div class="showCategory text-center column js-filter-category">
+            <div class="mainContainerLeft col-md-3 js-filter-category">
+                <div class="showCategory text-center column">
                     <h3 class="mb-5">Categories</h3>
                     <div class="col-sm mb-3">
                         <a href="{{ path('homepage') }}" class="categoryProducts boldProductName">All products</a>
@@ -33,31 +33,11 @@
             </div>
 
             <div class="mainContainerMid col-md-6 js-filter-content">
-                {% include 'product/product.html.twig' %}
+                {% include 'elements/product.html.twig' %}
             </div>
 
-            <div class="mainContainerRight col-md-3">
-                <div class="showCard text-center">
-                    <h3 class="mb-5">Your card</h3>
-                    <hr>
-                    {% for item in items %}
-                        <div class="itemCard col-sm mb-3">
-                            <p class="boldProductName">{{ item.product.name }}</p>
-                            <form action="/cart/recalc/{{item.product.id}}" method="POST" class="quantityCartHome">
-                                <p>Quantity : <input type="number" name="{{item.product.id}}" value="{{ item.quantity }}" class="inputUpdate"></p>
-                                <button type="submit" class="btn btn-warning btn-sm ms-2 mt-1">Update</button>
-                            </form>
-                            <p> Price : {{ item.product.price * item.quantity}} $
-                            <a href="{{ path('delete_cart', {'id': item.product.id}) }}"><img src="\img\delete.png" alt="" class="m-1"></a>
-                            </p>
-                        </div>
-                        <hr>
-                    {% endfor %}
-                    <div class="col-sm mb-3">
-                        <h5>Total of card : </h5>
-                        <h4>{{ total | number_format(2, '.', ',') }} $</h4>
-                    </div>
-                </div>
+            <div class="mainContainerRight col-md-3 js-filter-cart">
+                {% include 'elements/cart.html.twig' %}
             </div>
             
         </div>

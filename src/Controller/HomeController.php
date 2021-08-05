@@ -24,7 +24,7 @@ class HomeController extends AbstractController {
 
         if($request->isXmlHttpRequest()){
             return new JsonResponse([
-                'content' => $this->renderView('product/product.html.twig', [
+                'content' => $this->renderView('elements/product.html.twig', [
                     'products' => $products,
                 ])
             ]);
@@ -54,7 +54,7 @@ class HomeController extends AbstractController {
         
         if($request->isXmlHttpRequest()){
             return new JsonResponse([
-                'content' => $this->renderView('product/product.html.twig', [
+                'content' => $this->renderView('elements/product.html.twig', [
                     'products' => $products,
                 ])
             ]);

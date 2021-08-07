@@ -1,46 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
+        
     <div class="container">
         
         {% if items | length > 0 %}
         
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for item in items %}
-                        <tr>
-                            <td>{{ item.product.name }}</td>
-                            <td>{{ item.product.price }}</td>
-                            <td>
-                                <form action="/cart/recalc/{{item.product.id}}" method="POST">
-                                    <input type="number" name="{{item.product.id}}" value="{{ item.quantity }}" class="inputUpdate">
-                                    <button type="submit" class="btn btn-warning btn-sm mb-1">Update</button>
-                                </form>
-                            </td>
-                            <td>{{ item.product.price * item.quantity }}</td>
-                            <td>
-                                <a href="{{ path('delete_cart', {'id': item.product.id}) }}"><img src="img\delete.png" alt="" class="m-1"></a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="3">Total :</td>
-                        <td>{{ total }}</td>
-                        <td></td>
-                    </tr>
-                </tfoot>
+            <table class="table js-filter-content-cart">
+                {% include 'elements/cartPage/cart.html.twig' %}
             </table>
 
         {% else %}
@@ -48,4 +15,5 @@
         {% endif %}
 
     </div>
+
 {% endblock %}

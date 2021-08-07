@@ -18,7 +18,7 @@ class CartController extends AbstractController{
     /**
      * @Route ("/cart", name = "cart")
      */
-    public function cart(CartService $cartservice, SessionInterface $session){
+    public function cart(Request $request, CartService $cartservice, SessionInterface $session){
         
         return $this->render(
             'users/cart.html.twig',
@@ -36,23 +36,29 @@ class CartController extends AbstractController{
         $cartservice->add($id);
         $route = $request->headers->get('referer');
 
-        if($request->isXmlHttpRequest()){
-            return new JsonResponse([
-                'content' => $this->renderView('elements/cart.html.twig', [
-                    'items' => $cartservice->getFullCart(),
-                    'total' => $cartservice->getTotal()
-                ])
-            ]);
+        $route = preg_split('#[/]#', $route); // SPLIT URL
+        $route = end($route); // GET "/cart" OR "" OR "/category/name_category"
+
+        if($route == "cart"){
+            if($request->isXmlHttpRequest()){
+                return new JsonResponse([
+                    'content' => $this->renderView('elements/cartPage/cart.html.twig', [
+                        'items' => $cartservice->getFullCart(),
+                        'total' => $cartservice->getTotal()
+                    ])
+                ]);
+            }
+        } else {
+            if($request->isXmlHttpRequest()){
+                return new JsonResponse([
+                    'content' => $this->renderView('elements/cart.html.twig', [
+                        'items' => $cartservice->getFullCart(),
+                        'total' => $cartservice->getTotal()
+                    ])
+                ]);
+            }
         }
 
-        return new RedirectResponse($route);
-    }
-
-    /**
-     * @Route ("/cart/recalc/{id}", name="recalc_cart")
-     */
-    public function recalc(int $id, CartService $cartservice, Request $request){
-        $cartservice->recalc($id);
         $route = $request->headers->get('referer');
 
         return new RedirectResponse($route);
@@ -65,14 +71,30 @@ class CartController extends AbstractController{
         $cartservice->remove($id);
         $route = $request->headers->get('referer');
 
-        if($request->isXmlHttpRequest()){
-            return new JsonResponse([
-                'content' => $this->renderView('elements/cart.html.twig', [
-                    'items' => $cartservice->getFullCart(),
-                    'total' => $cartservice->getTotal()
-                ])
-            ]);
+        $route = preg_split('#[/]#', $route); // SPLIT URL
+        $route = end($route); // GET "/cart" OR "" OR "/category/name_category"
+
+        if($route == "cart"){
+            if($request->isXmlHttpRequest()){
+                return new JsonResponse([
+                    'content' => $this->renderView('elements/cartPage/cart.html.twig', [
+                        'items' => $cartservice->getFullCart(),
+                        'total' => $cartservice->getTotal()
+                    ])
+                ]);
+            }
+        } else {
+            if($request->isXmlHttpRequest()){
+                return new JsonResponse([
+                    'content' => $this->renderView('elements/cart.html.twig', [
+                        'items' => $cartservice->getFullCart(),
+                        'total' => $cartservice->getTotal()
+                    ])
+                ]);
+            }
         }
+
+        $route = $request->headers->get('referer');
 
         return new RedirectResponse($route);
     }
@@ -85,14 +107,30 @@ class CartController extends AbstractController{
         $cartservice->delete($id);
         $route = $request->headers->get('referer');
 
-        if($request->isXmlHttpRequest()){
-            return new JsonResponse([
-                'content' => $this->renderView('elements/cart.html.twig', [
-                    'items' => $cartservice->getFullCart(),
-                    'total' => $cartservice->getTotal()
-                ])
-            ]);
+        $route = preg_split('#[/]#', $route); // SPLIT URL
+        $route = end($route); // GET "/cart" OR "" OR "/category/name_category"
+
+        if($route == "cart"){
+            if($request->isXmlHttpRequest()){
+                return new JsonResponse([
+                    'content' => $this->renderView('elements/cartPage/cart.html.twig', [
+                        'items' => $cartservice->getFullCart(),
+                        'total' => $cartservice->getTotal()
+                    ])
+                ]);
+            }
+        } else {
+            if($request->isXmlHttpRequest()){
+                return new JsonResponse([
+                    'content' => $this->renderView('elements/cart.html.twig', [
+                        'items' => $cartservice->getFullCart(),
+                        'total' => $cartservice->getTotal()
+                    ])
+                ]);
+            }
         }
+
+        $route = $request->headers->get('referer');
 
         return new RedirectResponse($route);
     }

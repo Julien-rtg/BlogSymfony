@@ -13,13 +13,13 @@
                 <td>{{ item.product.name }}</td>
                 <td>{{ item.product.price }}</td>
                 <td>                   
-                    <a href="{{ path('add_cart', {id : item.product.id}) }}"><img src="/img/plus.png" alt="" class="tokenImg"></a>                 
+                    <a class="tokenImg aCard" href="{{ path('add_cart', {id : item.product.id}) }}"><img src="/img/plus.png" alt=""></a>                 
                     {{ item.quantity }}
-                    <a href="{{ path('remove_cart', {id : item.product.id}) }}"><img src="/img/minus.png" alt="" class="tokenImg"></a>
+                    <a class="tokenImg aCard" href="{{ path('remove_cart', {id : item.product.id}) }}"><img src="/img/minus.png" alt=""></a>
                 </td>
                 <td>{{ item.product.price * item.quantity }}</td>
                 <td>
-                    <a href="{{ path('delete_cart', {'id': item.product.id}) }}"><img src="img\delete.png" alt="" class="m-1"></a>
+                    <a class="aCard" href="{{ path('delete_cart', {'id': item.product.id}) }}"><img src="img\delete.png" alt="" class="m-1"></a>
                 </td>
             </tr>
         {% endfor %}

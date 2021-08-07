@@ -18,24 +18,30 @@ if($('body').is('.homepage')){
 }
 
 // AJAX FOR ADD TO CART
-$('.js-filter-content').on('click', "a", function(){
+$('.js-filter-content').on('click', ".aCard", function(){
+
     event.preventDefault();
     const url = $(this).attr('href');
     loadContent(url, cart);
+
 });
 
 // AJAX FOR ADD & REMOVE CART
-$('.js-filter-cart').on('click', "a", function(){
+$('.js-filter-cart').on('click', ".aCard", function(){
+
     event.preventDefault();
     const url = $(this).attr('href');
     loadContent(url, cart);
+
 });
 
 // AJAX CART PAGE
-$('.js-filter-content-cart').on('click', "a", function(){
+$('.js-filter-content-cart').on('click', ".aCard", function(){
+
     event.preventDefault();
     const url = $(this).attr('href');
     loadContent(url, cartPage);
+ 
 });
 
 

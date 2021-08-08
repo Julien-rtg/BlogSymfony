@@ -5,13 +5,13 @@
         <div class="itemCard col-sm mb-3">
             <p class="boldProductName">{{ item.product.name }}</p>
             <div class="quantity-cart-home mb-3">
-                <div class="icon-cart me-2">
+                <div class="icon-cart imgCardLeft">
                     <a class="tokenImg aCard" href="{{ path('add_cart', {id : item.product.id}) }}"><img src="/img/plus.png" alt=""></a>
                 </div>
-                <div class="icon-cart">
+                <div class="icon-cart tokenImg quantityCard">
                     {{ item.quantity }}
                 </div>
-                <div class="icon-cart ms-2">
+                <div class="icon-cart imgCardRight">
                     <a class="tokenImg aCard" href="{{ path('remove_cart', {id : item.product.id}) }}"><img src="/img/minus.png" alt=""></a>
                 </div>
             </div>

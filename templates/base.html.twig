@@ -24,16 +24,19 @@
                         </button>
                     </div>
                    
-                    <div class="navDivTitle navDiv">
+                    <div class="navDivTitle">
                         <ul class="navbar-nav">
-                            <li class="nav-item pe-3">
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ path('homepage') }}"><span class="firstW">Le</span> <span class="text-white">Petit</span> <span class="thirdW">Français</span></a>
                             </li>
                         </ul>
                     </div>
 
-                    <div class="navDivCart navDiv">
-                        <ul class="navbar-nav">
+                    <div class="navDivCart">
+                        <ul class="navbar-nav navIcon">
+                            <li class="nav-item nav-item-center">
+                                <a class="nav-link " href="{{ path('app_login') }}"><img src="/img/profile.png" alt=""></a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link " href="{{ path('cart') }}"><img src="/img/cart.png" alt=""></a>
                             </li>
@@ -46,12 +49,9 @@
                                 <a class="nav-link" href="{{ path('homepage') }}">Home</a>
                             </li>
                             <li class="nav-item nav-item-center navItemOrder2">
-                                <a class="nav-link " href="{{ path('app_login') }}">My Account</a>
-                            </li>
-                            <li class="nav-item nav-item-center navItemOrder3">
                                 <a class="nav-link " href="{{ path('about') }}">About</a>
                             </li>
-                            <li class="nav-item nav-item-center navItemOrder4">
+                            <li class="nav-item nav-item-center navItemOrder3">
                                 {% if app.user.roles is defined %}
                                     {% for role in app.user.roles %}
                                         {% if role == "ROLE_ADMIN" %}
@@ -60,7 +60,7 @@
                                     {% endfor %}
                                 {% endif %}
                             </li>
-                            <li class="nav-item nav-item-center navItemOrder5">
+                            <li class="nav-item nav-item-center navItemOrder4">
                                 {% if app.user %}
                                     <a class="nav-link" href="{{ path('app_logout') }}"><img src="/img/off.png" alt=""></a>
                                 {% endif %}

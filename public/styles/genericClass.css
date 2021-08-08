@@ -1,6 +1,5 @@
 .categoryProducts{
     text-decoration: none;
-    color: rgb(255, 83, 83);
 }
 .boldProductName{
     font-weight: bold;
@@ -21,4 +20,16 @@
 }
 .textDecoNone{
     text-decoration: none;
+}
+.imgCardLeft {
+    background-color: rgb(95, 83, 255);
+    border-radius: 50% 0% 0% 50%;
+}
+.imgCardRight {
+    background-color: rgb(95, 83, 255);
+    border-radius: 0% 50% 50% 0%;
+}
+.quantityCard {
+    border-top: 1px solid;
+    border-bottom: 1px solid;
 }
